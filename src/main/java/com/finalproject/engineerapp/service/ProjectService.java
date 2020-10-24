@@ -6,8 +6,8 @@ import com.finalproject.engineerapp.repositories.ProjectRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ProjectService {
@@ -16,17 +16,26 @@ public class ProjectService {
     private ProjectRepository projectRepository;
 
     public List<Project> getProjects() {
-        Iterable<Project> projects = projectRepository.findAll();
-        List<Project> projectsList = new ArrayList<>();
-        for (Project project : projects) {
-            projectsList.add(project);
-        }
-        return projectsList;
+        List<Project> projects = projectRepository.findAll();
+        return projects;
     }
 
     public Project updateProject(Project project) {
         projectRepository.save(project);
+        return project;
+    }
 
+    public Project addProject(Project project) {
+        projectRepository.save(project);
+        return project;
+    }
+
+    public void deleteProject(Project project) {
+        projectRepository.delete(project);
+    }
+
+    public Optional<Project> findProjectById(long id) {
+        Optional<Project> project = projectRepository.findById(id);
         return project;
     }
 

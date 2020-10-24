@@ -11,17 +11,17 @@ public class Project {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int projectId;
+    private long projectId;
     private String projectName;
 
     public Project() {
     }
 
-    public int getProjectId() {
+    public long getProjectId() {
         return projectId;
     }
 
-    public void setProjectId(int projectId) {
+    public void setProjectId(long projectId) {
         this.projectId = projectId;
     }
 
