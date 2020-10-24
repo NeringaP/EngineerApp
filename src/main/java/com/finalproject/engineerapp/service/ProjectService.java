@@ -24,7 +24,10 @@ public class ProjectService {
         return projectsList;
     }
 
-    public void updateProject() {
+    public Project updateProject(Project project) {
+        projectRepository.save(project);
 
+        return project;
     }
+
 }

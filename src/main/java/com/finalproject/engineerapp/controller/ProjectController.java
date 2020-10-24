@@ -5,12 +5,11 @@ import com.finalproject.engineerapp.service.ProjectService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@Controller
+@RestController
 @RequestMapping("/projects")
 public class ProjectController {
 
@@ -18,9 +17,15 @@ public class ProjectController {
     private ProjectService projectService;
 
     @GetMapping("/")
-    public String projects(Model model) {
+    public List<Project> projects(Model model) {
         List<Project> projects = projectService.getProjects();
         model.addAttribute("projects", projects);
-        return "projects";
+        return projects;
     }
+    @PutMapping("/update")
+    public Project update(@RequestBody Project project) {
+        Project updatedProject = projectService.updateProject(project);
+        return updatedProject;
+    }
+
 }
