@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.util.List;
 
-@RestController
+@Controller
 @RequestMapping("/projects")
 public class ProjectController {
 
@@ -18,10 +18,10 @@ public class ProjectController {
     private ProjectService projectService;
 
     @GetMapping("/")
-    public List<Project> projects(Model model) {
+    public String projects(Model model) {
         List<Project> projects = projectService.getProjects();
         model.addAttribute("projects", projects);
-        return projects;
+        return "projects";
     }
 
     @PutMapping("/update")
@@ -29,13 +29,21 @@ public class ProjectController {
         projectService.updateProject(project);
     }
 
+    @GetMapping("/create")
+    public String showCreateNewProjectForm (Project project) {
+        return "project_add";
+    }
+
     @PostMapping("/add")
-    public void add(@RequestBody Project project) {
+    public String add(Project project, Model model) {
          projectService.addProject(project);
+        List<Project> projects = projectService.getProjects();
+         model.addAttribute("projects", projects);
+         return "projects";
     }
 
     @GetMapping("/delete/{id}")
-    public String projects(@PathVariable("id") long id, Model model)  {
+    public String projects(@PathVariable("id") Long id, Model model)  {
         Project project = projectService.findProjectById(id).orElseThrow(() -> new IllegalArgumentException("Invalid " +
                 "user Id:" + id));
         projectService.deleteProject(project);
@@ -43,4 +51,5 @@ public class ProjectController {
         model.addAttribute("projects", projects);
         return "projects";
     }
+
 }

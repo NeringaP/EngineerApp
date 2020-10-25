@@ -11,23 +11,23 @@ public class Project {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long projectId;
-    private String projectName;
+    private Long id;
+    private String name;
 
 
-    public Long getProjectId() {
-        return projectId;
+    public Long getId() {
+        return id;
     }
 
-    public void setProjectId(long projectId) {
-        this.projectId = projectId;
+    public void setId(long id) {
+        this.id = id;
     }
 
-    public String getProjectName() {
-        return projectName;
+    public String getName() {
+        return name;
     }
 
-    public void setProjectName(String projectName) {
-        this.projectName = projectName;
+    public void setName(String name) {
+        this.name = name;
     }
 }
