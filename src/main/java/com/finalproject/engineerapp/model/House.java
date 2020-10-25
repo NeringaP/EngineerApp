@@ -1,17 +1,17 @@
 package com.finalproject.engineerapp.model;
 
 public class House {
-    private int houseId;
+    private Long houseId;
     private String houseName;
 
     public House() {
     }
 
-    public int getHouseId() {
+    public Long getHouseId() {
         return houseId;
     }
 
-    public void setHouseId(int houseId) {
+    public void setHouseId(Long houseId) {
         this.houseId = houseId;
     }
 

@@ -1,16 +1,16 @@
 package com.finalproject.engineerapp.model;
 
 public class Person {
-    private int id;
+    private Long id;
     private String firstName;
     private String lastName;
     private String email;
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

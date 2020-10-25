@@ -11,13 +11,13 @@ public class Project {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long projectId;
+    private Long projectId;
     private String projectName;
 
     public Project() {
     }
 
-    public long getProjectId() {
+    public Long getProjectId() {
         return projectId;
     }
 
