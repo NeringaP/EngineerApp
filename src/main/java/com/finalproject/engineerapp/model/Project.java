@@ -14,8 +14,6 @@ public class Project {
     private Long projectId;
     private String projectName;
 
-    public Project() {
-    }
 
     public Long getProjectId() {
         return projectId;

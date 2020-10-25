@@ -20,14 +20,12 @@ public class ProjectService {
         return projects;
     }
 
-    public Project updateProject(Project project) {
+    public void updateProject(Project project) {
         projectRepository.save(project);
-        return project;
     }
 
-    public Project addProject(Project project) {
+    public void addProject(Project project) {
         projectRepository.save(project);
-        return project;
     }
 
     public void deleteProject(Project project) {

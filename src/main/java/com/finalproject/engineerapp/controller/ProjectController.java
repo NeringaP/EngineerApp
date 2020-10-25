@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.util.List;
 
-@Controller
+@RestController
 @RequestMapping("/projects")
 public class ProjectController {
 
@@ -18,23 +18,22 @@ public class ProjectController {
     private ProjectService projectService;
 
     @GetMapping("/")
-    public String projects(Model model) {
+    public List<Project> projects(Model model) {
         List<Project> projects = projectService.getProjects();
         model.addAttribute("projects", projects);
-        return "projects";
+        return projects;
     }
 
     @PutMapping("/update")
-    public Project update(@RequestBody Project project) {
-        Project updatedProject = projectService.updateProject(project);
-        return updatedProject;
+    public void update(@RequestBody Project project) {
+        projectService.updateProject(project);
     }
 
     @PostMapping("/add")
-    public Project add(@RequestBody Project project) {
-        Project newProject = projectService.addProject(project);
-        return newProject;
+    public void add(@RequestBody Project project) {
+         projectService.addProject(project);
     }
+
     @GetMapping("/delete/{id}")
     public String projects(@PathVariable("id") long id, Model model)  {
         Project project = projectService.findProjectById(id).orElseThrow(() -> new IllegalArgumentException("Invalid " +
