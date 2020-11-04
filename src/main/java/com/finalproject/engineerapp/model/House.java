@@ -1,26 +1,36 @@
 package com.finalproject.engineerapp.model;
 
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Entity
 public class House {
-    private Long houseId;
-    private String houseName;
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    private String name;
 
     public House() {
     }
 
-    public Long getHouseId() {
-        return houseId;
+    public Long getId() {
+        return id;
     }
 
-    public void setHouseId(Long houseId) {
-        this.houseId = houseId;
+    public void setId(Long id) {
+        this.id = id;
     }
 
-    public String getHouseName() {
-        return houseName;
+    public String getName() {
+        return name;
     }
 
-    public void setHouseName(String houseName) {
-        this.houseName = houseName;
+    public void setName(String name) {
+        this.name = name;
     }
 
 }
