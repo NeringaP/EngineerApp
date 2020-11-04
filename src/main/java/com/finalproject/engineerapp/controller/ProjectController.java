@@ -24,11 +24,6 @@ public class ProjectController {
         return "projects";
     }
 
-    @PutMapping("/update")
-    public void update(@RequestBody Project project) {
-        projectService.updateProject(project);
-    }
-
     @GetMapping("/create")
     public String showCreateNewProjectForm (Project project) {
         return "project_add";
@@ -37,9 +32,25 @@ public class ProjectController {
     @PostMapping("/add")
     public String add(Project project, Model model) {
          projectService.addProject(project);
-        List<Project> projects = projectService.getProjects();
+         List<Project> projects = projectService.getProjects();
          model.addAttribute("projects", projects);
          return "projects";
+    }
+
+    @GetMapping("/edit/{id}")
+    public String showEditForm(@PathVariable("id") Long id, Model model) {
+        Project project = projectService.findProjectById(id).orElseThrow(() -> new IllegalArgumentException(
+                "Invalid user Id:" + id));
+        model.addAttribute("project", project);
+        return "project_edit";
+    }
+
+    @PostMapping("/update/{id}")
+    public String update(@PathVariable("id") Long id, Project project, Model model) {
+        projectService.updateProject(project);
+        List<Project> projects = projectService.getProjects();
+        model.addAttribute("projects", projects);
+        return "projects";
     }
 
     @GetMapping("/delete/{id}")
