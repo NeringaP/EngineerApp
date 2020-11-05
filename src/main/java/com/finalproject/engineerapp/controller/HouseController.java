@@ -3,6 +3,7 @@ package com.finalproject.engineerapp.controller;
 import com.finalproject.engineerapp.model.House;
 import com.finalproject.engineerapp.model.Project;
 import com.finalproject.engineerapp.service.HouseService;
+import com.finalproject.engineerapp.service.ProjectService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,6 +21,9 @@ public class HouseController {
     @Autowired
     private HouseService houseService;
 
+    @Autowired
+    private ProjectService projectService;
+
     @GetMapping("/")
     public String houses(Model model) {
         List<House> houses = houseService.getHouses();
@@ -28,7 +32,9 @@ public class HouseController {
     }
 
     @GetMapping("/create")
-    public String showCreateNewHouseForm (House house) {
+    public String showCreateNewHouseForm (House house, Model model) {
+        List<Project> projects = projectService.getProjects();
+        model.addAttribute("projects", projects);
         return "house_add";
     }
 
