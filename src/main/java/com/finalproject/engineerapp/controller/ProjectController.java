@@ -40,7 +40,7 @@ public class ProjectController {
     @GetMapping("/edit/{id}")
     public String showEditForm(@PathVariable("id") Long id, Model model) {
         Project project = projectService.findProjectById(id).orElseThrow(() -> new IllegalArgumentException(
-                "Invalid user Id:" + id));
+                "Invalid project Id:" + id));
         model.addAttribute("project", project);
         return "project_edit";
     }
@@ -54,9 +54,9 @@ public class ProjectController {
     }
 
     @GetMapping("/delete/{id}")
-    public String projects(@PathVariable("id") Long id, Model model)  {
+    public String delete(@PathVariable("id") Long id, Model model)  {
         Project project = projectService.findProjectById(id).orElseThrow(() -> new IllegalArgumentException("Invalid " +
-                "user Id:" + id));
+                "project Id:" + id));
         projectService.deleteProject(project);
         List<Project> projects = projectService.getProjects();
         model.addAttribute("projects", projects);
