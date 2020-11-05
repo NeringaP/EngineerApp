@@ -40,6 +40,7 @@
         <tr>
             <th>House ID</th>
             <th>House name</th>
+            <th>Project ID</th>
             <th>Edit</th>
             <th>Delete</th>
         </tr>
@@ -48,6 +49,7 @@
         <tr th:each="house: ${houses}">
             <td th:text="${house.id}">House ID</td>
             <td th:text="${house.name}">House name</td>
+            <td th:text="${house.project.id}">Project ID</td>
             <td>
                 <a th:href="@{/houses/edit/{id}(id=${house.id})}" class="btn btn-xs btn-block btn-primary">Edit</a>
             </td>
