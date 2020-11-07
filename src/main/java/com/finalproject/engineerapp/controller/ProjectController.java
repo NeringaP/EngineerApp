@@ -17,7 +17,7 @@ public class ProjectController {
     @Autowired
     private ProjectService projectService;
 
-    @GetMapping("/")
+    @GetMapping
     public String projects(Model model) {
         List<Project> projects = projectService.getProjects();
         model.addAttribute("projects", projects);

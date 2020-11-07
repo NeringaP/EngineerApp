@@ -24,7 +24,7 @@ public class HouseController {
     @Autowired
     private ProjectService projectService;
 
-    @GetMapping("/")
+    @GetMapping
     public String houses(Model model) {
         List<House> houses = houseService.getHouses();
         model.addAttribute("houses", houses);
