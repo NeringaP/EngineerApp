@@ -13,44 +13,31 @@
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]--></head>
 <body>
-<nav class="navbar navbar-inverse navbar-fixed-top">
-    <div class="container">
-        <div class="navbar-header">
-            <a class="navbar-brand" href="/">Projects</a>
-        </div>
+    <div th:replace="fragments/fragments :: navbar">
     </div>
-</nav>
-<br>
-<br>
-<div class="container my-5">
-    <h2 class="mb-5">Edit project</h2>
-    <div class="row">
-        <div class="col-md-6">
-            <form action="#" th:action="@{/projects/update/{id}(id=${project.id})}" th:object="${project}" method="post">
-                <div class="row">
-                    <div class="form-group col-md-6">
-                        <label for="name" class="col-form-label">Name</label>
-                        <input type="text" th:field="*{name}" class="form-control" id="name" placeholder="Name">
-                        <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="text-danger"></span>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-6 mt-5">
-                        <input type="submit" class="btn btn-large btn-success" value="Update project">
-                    </div>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
-<footer class="footer navbar-inverse navbar-fixed-bottom">
-    <div class="container">
+    <div class="container my-5">
+        <h2 class="mb-5">Edit project</h2>
         <div class="row">
-            <div class="col-md-4"></div>
-            <div class="col-md-4"><p class="text-muted">@Copyright 2020 Neringa Petrauskaitė</p></div>
+            <div class="col-md-6">
+                <form action="#" th:action="@{/projects/update/{id}(id=${project.id})}" th:object="${project}" method="post">
+                    <div class="row">
+                        <div class="form-group col-md-6">
+                            <label for="name" class="col-form-label">Name</label>
+                            <input type="text" th:field="*{name}" class="form-control" id="name" placeholder="Name">
+                            <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 mt-5">
+                            <input type="submit" class="btn btn-large btn-success" value="Update project">
+                        </div>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
-</footer>
+    <div th:replace="fragments/fragments :: footer">
+    </div>
 <script src="http://code.jquery.com/jquery-1.12.4.min.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>

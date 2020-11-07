@@ -14,18 +14,11 @@
     <![endif]-->
 </head>
 <body>
-    <nav class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <a class="navbar-brand" href="/projects">Projects</a>
-                <a class="navbar-brand" href="/houses">Houses</a>
-            </div>
-        </div>
-    </nav>
-    <br>
+    <div th:replace="fragments/fragments :: navbar">
+    </div>
     <div class="container">
         <div class="page-header">
-            <h1>Welcome</h1>
+            <h1>Projects table</h1>
         </div>
         <div th:switch="${projects}" class="container my-5">
             <div class="row">
@@ -59,19 +52,13 @@
             </tbody>
         </table>
     </div>
-
+    <div th:replace="fragments/fragments :: footer">
+    </div>
 <script src="http://code.jquery.com/jquery-1.12.4.min.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </body>
-<footer class="footer navbar-inverse navbar-fixed-bottom">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-4"></div>
-            <div class="col-md-4"><p class="text-muted">@Copyright 2020 Neringa Petrauskaitė</p></div>
-        </div>
-    </div>
-</footer>
+
 </html>
 
 
