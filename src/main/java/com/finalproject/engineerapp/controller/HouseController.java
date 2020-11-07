@@ -51,6 +51,8 @@ public class HouseController {
         House house = houseService.findHouseById(id).orElseThrow(() -> new IllegalArgumentException(
                 "Invalid house Id:" + id));
         model.addAttribute("house", house);
+        List<Project> projects = projectService.getProjects();
+        model.addAttribute("projects", projects);
         return "house_edit";
     }
 
