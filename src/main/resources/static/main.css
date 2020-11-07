@@ -1,0 +1,23 @@
+body {
+  background-image: url("https://mdbootstrap.com/img/Photos/Horizontal/Nature/full page/img(11).jpg");
+
+  /* Full height */
+  height: 200%;
+
+  /* Center and scale the image nicely */
+  background-position: 15% 35%;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+h1 {
+  letter-spacing: 8px;
+}
+
+h5 {
+  letter-spacing: 3px;
+}
+
+.hr-light {
+  border-top: 3px solid #fff;
+  width: 80px;
+}
