@@ -5,11 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <title>Add project</title>
-    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/ui-darkness/jquery-ui.css"/>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/site.css"/>
-    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]--></head>
 <body>
     <div th:replace="fragments/fragments :: navbar">
@@ -22,8 +18,11 @@
                     <div class="row">
                         <div class="form-group col-md-6">
                             <label for="name" class="col-form-label">Name</label>
-                            <input type="text" th:field="*{name}" class="form-control" id="name" placeholder="Name">
+                            <input type="text" th:field="*{name}" class="form-control is-invalid" id="name" placeholder="Name" required>
                             <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="text-danger"></span>
+                            <div class="invalid-feedback">
+                                Please provide a valid name.
+                            </div>
                         </div>
                     </div>
                     <div class="row">
@@ -37,8 +36,6 @@
     </div>
     <div th:replace="fragments/fragments :: footer">
     </div>
-    <script src="http://code.jquery.com/jquery-1.12.4.min.js"></script>
-    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </body>
