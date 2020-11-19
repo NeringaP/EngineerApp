@@ -13,47 +13,52 @@
                     </li>
                 </ul>
                 -->
-</div>
+
 <div th:fragment="navbar">
-    <nav class="navbar navbar-inverse">
-        <div class="container-fluid">
-            <div class="navbar-header">
-                <a class="navbar-brand active" href="/home">
-                    <img src="/logo.svg" width="30" height="30" alt="">
-                </a>
-                <a class="navbar-brand active" href="/home">NP Projects
-                </a>
-            </div>
-            <ul class="nav navbar-nav">
-                <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="/projects">Projects <span class="caret"></span></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="/projects">Projects table</a></li>
-                        <li><a href="/projects/create">Add new project</a></li>
-                    </ul>
-                </li>
-                <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="/projects">Houses <span class="caret"></span></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="/houses">Houses table</a></li>
+    <nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-dark">
+        <a class="navbar-brand mb-0 h1" href="/home">
+            <img src="/logo.svg" width="30" height="30" alt="">
+            NP Projects
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="projectsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Projects
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="projectsDropdown">
+                        <a class="dropdown-item" href="/projects">Projects table</a>
                         <div class="dropdown-divider"></div>
-                        <li><a href="/houses/create">Add new house</a></li>
-                    </ul>
+                        <a class="dropdown-item" href="/projects/create">Add new project</a>
+                    </div>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="housesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Houses
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="housesDropdown">
+                        <a class="dropdown-item" href="/houses">Houses table</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="/houses/create">Add new house</a>
+                    </div>
                 </li>
             </ul>
-            <ul class="nav navbar-nav navbar-right">
-                <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-                <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-            </ul>
+            <form class="form-inline my-2 my-lg-0">
+                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-secondary my-2 my-sm-0" type="submit">Search</button>
+            </form>
         </div>
     </nav>
 </div>
+
 <div th:fragment="footer">
-    <footer class="footer navbar-inverse navbar-fixed-bottom">
-        <div class="container">
+    <footer class="navbar navbar-expand-lg fixed-bottom navbar-dark bg-dark">
+        <div class="container justify-content-md-center">
             <div class="row">
-                <div class="col-md-4"></div>
-                <div class="col-md-4">
-                    <p class="text-muted text-center">@Copyright 2020 Neringa Petrauskaitė</p>
-                </div>
+                <p class="text-muted text-center">@Copyright 2020 Neringa Petrauskaitė</p>
             </div>
         </div>
     </footer>

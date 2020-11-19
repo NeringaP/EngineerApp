@@ -5,26 +5,27 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <title>Projects app</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-    <![endif]-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 </head>
 <body>
     <div th:replace="fragments/fragments :: navbar">
     </div>
+    <br>
+    <br>
     <div class="container">
-        <div class="page-header">
+        <div class="page-header my-3">
             <h1>Houses table</h1>
         </div>
-        <div th:switch="${houses}" class="container my-5">
+        <div th:switch="${houses}" class="container">
             <div class="row">
                 <div class="col-md-6">
-                    <p class="my-5">
-                        <a href="/houses/create"  th:href="@{/houses/create}" class="btn btn-large btn-success">Add house</a>
+                    <p class="my-3">
+                        <a href="/houses/create"  th:href="@{/houses/create}" class="btn btn-success">Add house</a>
                     </p>
                 </div>
             </div>
         </div>
-        <table class="table table-striped table-bordered">
+        <table class="table table-striped table-sm">
             <thead>
             <tr>
                 <th>House ID</th>
@@ -38,21 +39,29 @@
             <tr th:each="house: ${houses}">
                 <td th:text="${house.id}">House ID</td>
                 <td th:text="${house.name}">House name</td>
-                <td th:text="${house.project.id}">Project ID</td>
+                <td th:text="${house.project.id + '. ' + house.project.name}">Project</td>
                 <td>
-                    <a th:href="@{/houses/edit/{id}(id=${house.id})}" class="btn btn-xs btn-block btn-primary">Edit</a>
+                    <a th:href="@{/houses/edit/{id}(id=${house.id})}" class="btn btn-sm btn-block btn-primary">Edit</a>
                 </td>
                 <td>
-                    <a th:href="@{/houses/delete/{id}(id=${house.id})}" class="btn btn-xs btn-block btn-primary">Delete</a>
+                    <a th:href="@{/houses/delete/{id}(id=${house.id})}" class="btn btn-sm btn-block btn-primary">Delete</a>
                 </td>
             </tr>
             </tbody>
         </table>
     </div>
+    <div class="container">
+        <div class="row">
+            <br>
+            <br>
+        </div>
+    </div>
     <div th:replace="fragments/fragments :: footer">
     </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 </body>
 
 </html>
