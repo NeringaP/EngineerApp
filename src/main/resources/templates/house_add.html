@@ -15,21 +15,27 @@
         <h2 class="mb-5">Add new house</h2>
         <div class="row">
             <div class="col-md-6">
-                <form action="#" th:action="@{/houses/add}" th:object="${house}" method="post">
+                <form action="#" th:action="@{/houses/add}" th:object="${house}" method="post" class="needs-validation" novalidate>
                     <div class="row">
                         <div class="form-group col-md-6">
                             <label for="name" class="col-form-label">Name</label>
-                            <input type="text" th:field="*{name}" class="form-control" id="name" placeholder="Name">
+                            <input type="text" th:field="*{name}" class="form-control" id="name" placeholder="Name" required>
                             <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="text-danger"></span>
+                            <div class="invalid-feedback">
+                                Please provide a valid name.
+                            </div>
                         </div>
                         <div class="form-group col-md-6">
                             <label for="project" class="col-form-label">Project</label>
-                            <select th:field="*{project.id}" class="form-control" id="project">
+                            <select th:field="*{project}" class="form-control" id="project" required>
                                 <option value="">Select project</option>
                                 <option th:each="project : ${projects}" th:value="${project.id}" th:text="${project.id + '. ' + project.name}">
                                 </option>
                             </select>
                             <span th:if="${#fields.hasErrors('project')}" th:errors="*{project.id}" class="text-danger"></span>
+                            <div class="invalid-feedback">
+                                Please select a project.
+                            </div>
                         </div>
                     </div>
                     <div class="row">
@@ -43,6 +49,7 @@
     </div>
     <div th:replace="fragments/fragments :: footer">
     </div>
+    <script src="/validation.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
