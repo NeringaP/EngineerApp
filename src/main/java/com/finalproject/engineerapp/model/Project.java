@@ -1,5 +1,6 @@
 package com.finalproject.engineerapp.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
@@ -11,10 +12,17 @@ public class Project {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     private String name;
+
     @OneToMany(mappedBy = "project", cascade = CascadeType.ALL)
     @JsonManagedReference
     private Set<House> houses;
+
+    @ManyToOne
+    @JoinColumn(name = "engineer_id")
+    @JsonBackReference
+    private Engineer engineer;
 
     public Long getId() {
         return id;
@@ -38,5 +46,13 @@ public class Project {
 
     public void setHouses(Set<House> houses) {
         this.houses = houses;
+    }
+
+    public Engineer getEngineer() {
+        return engineer;
+    }
+
+    public void setEngineer(Engineer engineer) {
+        this.engineer = engineer;
     }
 }

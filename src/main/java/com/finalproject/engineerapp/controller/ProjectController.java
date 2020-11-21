@@ -1,6 +1,8 @@
 package com.finalproject.engineerapp.controller;
 
+import com.finalproject.engineerapp.model.Engineer;
 import com.finalproject.engineerapp.model.Project;
+import com.finalproject.engineerapp.service.EngineerService;
 import com.finalproject.engineerapp.service.ProjectService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -17,6 +19,9 @@ public class ProjectController {
     @Autowired
     private ProjectService projectService;
 
+    @Autowired
+    private EngineerService engineerService;
+
     @GetMapping
     public String projects(Model model) {
         List<Project> projects = projectService.getProjects();
@@ -25,7 +30,9 @@ public class ProjectController {
     }
 
     @GetMapping("/create")
-    public String showCreateNewProjectForm (Project project) {
+    public String showCreateNewProjectForm (Project project, Model model) {
+        List<Engineer> engineers = engineerService.getEngineers();
+        model.addAttribute("engineers", engineers);
         return "project_add";
     }
 
@@ -42,6 +49,8 @@ public class ProjectController {
         Project project = projectService.findProjectById(id).orElseThrow(() -> new IllegalArgumentException(
                 "Invalid project Id:" + id));
         model.addAttribute("project", project);
+        List<Engineer> engineers = engineerService.getEngineers();
+        model.addAttribute("engineers", engineers);
         return "project_edit";
     }
 

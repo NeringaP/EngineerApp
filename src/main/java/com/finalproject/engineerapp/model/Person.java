@@ -1,10 +1,24 @@
 package com.finalproject.engineerapp.model;
 
+import javax.persistence.*;
+
 public class Person {
+
     private Long id;
+
     private String firstName;
+
     private String lastName;
+
     private String email;
+
+
+    public Person(Long id, String firstName, String lastName, String email) {
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+    }
 
     public Long getId() {
         return id;

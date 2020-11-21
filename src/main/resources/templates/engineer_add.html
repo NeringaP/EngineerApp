@@ -1,11 +1,10 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="utf-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
-    <title>Edit projects</title>
-    <!--<link rel="import" href="component.html">-->
+    <title>Add engineer</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 </head>
 <body>
@@ -13,41 +12,47 @@
     </div>
     <br>
     <div class="container my-5">
-        <h2 class="mb-5">Edit project</h2>
+        <h2 class="mb-5">Add new engineer</h2>
         <div class="row">
             <div class="col-md-6">
-                <form action="#" th:action="@{/projects/update/{id}(id=${project.id})}" th:object="${project}" method="post" class="needs-validation" novalidate>
-                    <div class="row">
+                <form action="#" th:action="@{/engineers/add}" th:object="${engineer}" method="post" class="needs-validation" novalidate>
+                    <div class="form-row">
                         <div class="form-group col-md-6">
-                            <label for="name" class="col-form-label">Name</label>
-                            <input type="text" th:field="*{name}" class="form-control" id="name" placeholder="Name" required>
-                            <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="text-danger"></span>
+                            <label for="firstName" class="col-form-label">First name</label>
+                            <input type="text" th:field="*{firstName}" class="form-control" id="firstName" placeholder="First name" required>
+                            <span th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}" class="text-danger"></span>
                             <div class="invalid-feedback">
-                                Please provide a valid name.
+                                Please provide a valid first name.
                             </div>
                         </div>
                         <div class="form-group col-md-6">
-                            <label for="engineer" class="col-form-label">Engineer</label>
-                            <select th:field="*{engineer}" class="form-control" id="engineer" required>
-                                <option value="">Select engineer</option>
-                                <option th:each="engineer : ${engineers}" th:value="${engineer.id}" th:text="${engineer.id + '. ' + engineer.firstName + ' ' + engineer.lastName}">
-                                </option>
-                            </select>
-                            <span th:if="${#fields.hasErrors('engineer')}" th:errors="*{engineer.id}" class="text-danger"></span>
+                            <label for="lastName" class="col-form-label">Last name</label>
+                            <input type="text" th:field="*{lastName}" class="form-control" id="lastName" placeholder="Last name" required>
+                            <span th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}" class="text-danger"></span>
                             <div class="invalid-feedback">
-                                Please select an engineer.
+                                Please provide a valid last name.
+                            </div>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="email" class="col-form-label">Email</label>
+                            <input type="text" th:field="*{email}" class="form-control" id="email" placeholder="Email" required>
+                            <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="text-danger"></span>
+                            <div class="invalid-feedback">
+                                Please provide a valid email.
                             </div>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-6 mt-5">
-                            <input type="submit" class="btn btn-large btn-success" value="Update project">
+                            <input type="submit" class="btn btn-large btn-success" value="Add project">
                         </div>
                     </div>
                 </form>
             </div>
         </div>
     </div>
+
+
     <div th:replace="fragments/fragments :: footer">
     </div>
     <script src="/validation.js"></script>

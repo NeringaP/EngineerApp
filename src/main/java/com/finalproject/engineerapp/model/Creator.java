@@ -1,5 +1,10 @@
 package com.finalproject.engineerapp.model;
 
-public class Creator extends Person {
+import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
+
+public class Creator {
+
+
 
 }

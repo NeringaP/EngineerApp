@@ -15,13 +15,13 @@
     <br>
     <div class="container">
         <div class="page-header my-3">
-            <h1>Projects table</h1>
+            <h1>Engineers table</h1>
         </div>
-        <div th:switch="${projects}" class="container">
+        <div th:switch="${engineers}" class="container">
             <div class="row">
                 <div class="col-md-8">
                     <p class="my-3">
-                        <a href="/projects/create"  th:href="@{/projects/create}" class="btn btn-success">Add project</a>
+                        <a href="/engineers/create"  th:href="@{/engineers/create}" class="btn btn-success">Add engineer</a>
                     </p>
                 </div>
                 <form class="form-inline col-md-4">
@@ -35,23 +35,25 @@
         <table class="table table-striped table-sm">
             <thead>
                 <tr>
-                    <th>Project ID</th>
-                    <th>Project name</th>
-                    <th>Engineer</th>
+                    <th>Engineer ID</th>
+                    <th>First name</th>
+                    <th>Last name</th>
+                    <th>Email</th>
                     <th>Edit</th>
                     <th>Delete</th>
                 </tr>
             </thead>
             <tbody id="myTable">
-                <tr th:each="project: ${projects}">
-                    <td th:text="${project.id}">Project ID</td>
-                    <td th:text="${project.name}">Project name</td>
-                    <td th:text="${project?.engineer?.id + '. ' + project?.engineer?.firstName + ' ' + project?.engineer?.lastName}">Engineer</td>
+                <tr th:each="engineer: ${engineers}">
+                    <td th:text="${engineer.id}">Engineer ID</td>
+                    <td th:text="${engineer.firstName}">First name</td>
+                    <td th:text="${engineer.lastName}">Last name</td>
+                    <td th:text="${engineer.email}">Email</td>
                     <td>
-                        <a th:href="@{/projects/edit/{id}(id=${project.id})}" class="btn btn-sm btn-block btn-primary">Edit</a>
+                        <a th:href="@{/engineers/edit/{id}(id=${engineer.id})}" class="btn btn-sm btn-block btn-primary">Edit</a>
                     </td>
                     <td>
-                        <a th:href="@{/projects/delete/{id}(id=${project.id})}" class="btn btn-sm btn-block btn-primary">Delete</a>
+                        <a th:href="@{/engineers/delete/{id}(id=${engineer.id})}" class="btn btn-sm btn-block btn-primary">Delete</a>
                     </td>
                 </tr>
             </tbody>
