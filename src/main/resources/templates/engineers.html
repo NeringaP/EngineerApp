@@ -21,7 +21,7 @@
             <div class="row">
                 <div class="col-md-8">
                     <p class="my-3">
-                        <a href="/engineers/create"  th:href="@{/engineers/create}" class="btn btn-success">Add engineer</a>
+                        <a href="/engineers/create"  th:href="@{/engineers/create}" class="btn btn-info">Add engineer</a>
                     </p>
                 </div>
                 <form class="form-inline col-md-4">
@@ -50,10 +50,10 @@
                     <td th:text="${engineer.lastName}">Last name</td>
                     <td th:text="${engineer.email}">Email</td>
                     <td>
-                        <a th:href="@{/engineers/edit/{id}(id=${engineer.id})}" class="btn btn-sm btn-block btn-primary">Edit</a>
+                        <a th:href="@{/engineers/edit/{id}(id=${engineer.id})}" class="btn btn-sm btn-block btn-info">Edit</a>
                     </td>
                     <td>
-                        <a th:href="@{/engineers/delete/{id}(id=${engineer.id})}" class="btn btn-sm btn-block btn-primary" data-toggle="modal" data-target="#exampleModalCenter">Delete</a>
+                        <a th:href="@{/engineers/delete/{id}(id=${engineer.id})}" class="btn btn-sm btn-block btn-info" data-toggle="modal" data-target="#exampleModalCenter">Delete</a>
                     </td>
                     <!-- Modal -->
                     <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
