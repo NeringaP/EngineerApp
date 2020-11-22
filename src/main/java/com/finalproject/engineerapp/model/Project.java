@@ -24,6 +24,11 @@ public class Project {
     @JsonBackReference
     private Engineer engineer;
 
+    @ManyToOne
+    @JoinColumn(name = "creator_id")
+    @JsonBackReference
+    private Creator creator;
+
     public Long getId() {
         return id;
     }
@@ -54,5 +59,13 @@ public class Project {
 
     public void setEngineer(Engineer engineer) {
         this.engineer = engineer;
+    }
+
+    public Creator getCreator() {
+        return creator;
+    }
+
+    public void setCreator(Creator creator) {
+        this.creator = creator;
     }
 }

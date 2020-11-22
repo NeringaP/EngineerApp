@@ -1,7 +1,9 @@
 package com.finalproject.engineerapp.controller;
 
+import com.finalproject.engineerapp.model.Creator;
 import com.finalproject.engineerapp.model.Engineer;
 import com.finalproject.engineerapp.model.Project;
+import com.finalproject.engineerapp.service.CreatorService;
 import com.finalproject.engineerapp.service.EngineerService;
 import com.finalproject.engineerapp.service.ProjectService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +24,9 @@ public class ProjectController {
     @Autowired
     private EngineerService engineerService;
 
+    @Autowired
+    private CreatorService creatorService;
+
     @GetMapping
     public String projects(Model model) {
         List<Project> projects = projectService.getProjects();
@@ -33,6 +38,8 @@ public class ProjectController {
     public String showCreateNewProjectForm (Project project, Model model) {
         List<Engineer> engineers = engineerService.getEngineers();
         model.addAttribute("engineers", engineers);
+        List<Creator> creators = creatorService.getCreators();
+        model.addAttribute("creators", creators);
         return "project_add";
     }
 
@@ -51,6 +58,8 @@ public class ProjectController {
         model.addAttribute("project", project);
         List<Engineer> engineers = engineerService.getEngineers();
         model.addAttribute("engineers", engineers);
+        List<Creator> creators = creatorService.getCreators();
+        model.addAttribute("creators", creators);
         return "project_edit";
     }
 
