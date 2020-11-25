@@ -53,10 +53,10 @@
                         <a th:href="@{/engineers/edit/{id}(id=${engineer.id})}" class="btn btn-sm btn-block btn-info">Edit</a>
                     </td>
                     <td>
-                        <a th:href="@{/engineers/delete/{id}(id=${engineer.id})}" class="btn btn-sm btn-block btn-info" data-toggle="modal" data-target="#exampleModalCenter">Delete</a>
+                        <a th:href="@{/engineers/delete/{id}(id=${engineer.id})}" class="btn btn-sm btn-block btn-info" data-toggle="modal" data-target="#exampleModalCenter" th:attrappend="data-target=${engineer.id}">Delete</a>
                     </td>
                     <!-- Modal -->
-                    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" th:attrappend="id=${engineer.id}">
                         <div class="modal-dialog modal-dialog-centered" role="document">
                             <div class="modal-content">
                                 <div class="modal-header">

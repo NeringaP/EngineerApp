@@ -49,10 +49,10 @@
                     <a th:href="@{/houses/edit/{id}(id=${house.id})}" class="btn btn-sm btn-block btn-info">Edit</a>
                 </td>
                 <td>
-                    <a th:href="@{/houses/delete/{id}(id=${house.id})}" class="btn btn-sm btn-block btn-info" data-toggle="modal" data-target="#exampleModalCenter">Delete</a>
+                    <a th:href="@{/houses/delete/{id}(id=${house.id})}" class="btn btn-sm btn-block btn-info" data-toggle="modal" data-target="#exampleModalCenter" th:attrappend="data-target=${house.id}">Delete</a>
                 </td>
                 <!-- Modal -->
-                <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" th:attrappend="id=${house.id}">
                     <div class="modal-dialog modal-dialog-centered" role="document">
                         <div class="modal-content">
                             <div class="modal-header">

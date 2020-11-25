@@ -49,10 +49,18 @@ public class JdbcSecurity extends WebSecurityConfigurerAdapter {
         //konfiguracija matomumams eina cia
         http
                 .authorizeRequests()
-                .antMatchers("/projects").authenticated()
-                .antMatchers("/projects").hasRole("BOARD")
-                .antMatchers("/projects").hasAuthority("BOARD")
-                .antMatchers("/home").permitAll();
+                //.antMatchers("/projects").authenticated()
+                //.antMatchers("/projects").hasRole("BOARD")
+                //.antMatchers("/houses").hasAuthority("BOARD")
+                .antMatchers("/**").permitAll()
+                .and()
+                .authorizeRequests().antMatchers("/h2-console/**").permitAll()
+                .and()
+                .headers().frameOptions().disable()
+                .and()
+                .csrf().ignoringAntMatchers("/h2-console/**")
+                .and()
+                .cors().disable();
     }
 
 }
