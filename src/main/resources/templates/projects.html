@@ -67,7 +67,11 @@
                                     </button>
                                 </div>
                                 <div class="modal-body">
-                                    Are you sure you want to delete this item?
+                                    <p>
+                                        <span>Are you sure you want to delete </span>
+                                        <span style="color:#17a2b8;font-weight:bold;font-style:italic" th:text="${project.id + '. ' + project.name}"> </span>
+                                        <span> project?</span>
+                                    </p>
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
