@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head>
     <meta charset="utf-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
@@ -18,16 +18,16 @@
         </div>
         <div th:switch="${houses}" class="container">
             <div class="row">
-                <div class="col-md-8">
-                    <p class="my-3">
-                        <a href="/houses/create"  th:href="@{/houses/create}" class="btn btn-info">Add house</a>
-                    </p>
-                </div>
                 <form class="form-inline col-md-4">
                     <img src="/search2.svg" width="20" height="20" alt="">
                     <input class="form-control my-3 col-md-10" id="tableSearch" type="text"
                            placeholder="Type something to search list items">
                 </form>
+                <div sec:authorize="hasAuthority('CREATOR')" class="ml-auto">
+                    <p class="my-3">
+                        <a href="/houses/create"  th:href="@{/houses/create}" class="btn btn-info">Add house</a>
+                    </p>
+                </div>
             </div>
         </div>
         <table class="table table-striped table-sm">
@@ -36,8 +36,8 @@
                 <th>House ID</th>
                 <th>House name</th>
                 <th>Project</th>
-                <th>Edit</th>
-                <th>Delete</th>
+                <th sec:authorize="hasAuthority('CREATOR')">Edit</th>
+                <th sec:authorize="hasAuthority('CREATOR')">Delete</th>
             </tr>
             </thead>
             <tbody id="myTable">
@@ -45,10 +45,10 @@
                 <td th:text="${house.id}">House ID</td>
                 <td th:text="${house.name}">House name</td>
                 <td th:text="${house.project.id + '. ' + house.project.name}">Project</td>
-                <td>
+                <td sec:authorize="hasAuthority('CREATOR')">
                     <a th:href="@{/houses/edit/{id}(id=${house.id})}" class="btn btn-sm btn-block btn-info">Edit</a>
                 </td>
-                <td>
+                <td sec:authorize="hasAuthority('CREATOR')">
                     <a th:href="@{/houses/delete/{id}(id=${house.id})}" class="btn btn-sm btn-block btn-info" data-toggle="modal" data-target="#exampleModalCenter" th:attrappend="data-target=${house.id}">Delete</a>
                 </td>
                 <!-- Modal -->

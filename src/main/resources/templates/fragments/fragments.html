@@ -25,7 +25,7 @@
             <span class="navbar-toggler-icon"></span>
         </button>
             </div>
-        <div sec:authorize="isAuthenticated()" class="collapse navbar-collapse" id="navbarNavDropdown" >
+        <div sec:authorize="hasAuthority('CREATOR')" class="collapse navbar-collapse" id="navbarNavDropdown" >
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="projectsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -33,8 +33,8 @@
                     </a>
                     <div class="dropdown-menu" aria-labelledby="projectsDropdown">
                         <a class="dropdown-item" href="/projects">Projects table</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="/projects/create">Add new project</a>
+                        <div sec:authorize="hasAuthority('CREATOR')" class="dropdown-divider"></div>
+                        <a sec:authorize="hasAuthority('CREATOR')" class="dropdown-item" href="/projects/create">Add new project</a>
                     </div>
                 </li>
                 <li class="nav-item dropdown">
@@ -68,6 +68,14 @@
                     </div>
                 </li>
             </ul>
+        </div>
+        <div sec:authorize="hasAuthority('USER')" class="collapse navbar-collapse" id="navbarNav" >
+        <div class="navbar-nav mr-auto">
+                <a class="nav-item nav-link" href="/projects">Projects</a>
+                <a class="nav-item nav-link" href="/houses">Houses</a>
+                <a class="nav-item nav-link" href="/engineers">Engineers</a>
+                <a class="nav-item nav-link" href="/creators">Creators</a>
+        </div>
         </div>
         <div class="navbar-nav justify-content-end">
             <a class="nav-link" href="/login">
