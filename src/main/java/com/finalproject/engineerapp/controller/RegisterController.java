@@ -6,6 +6,8 @@ import com.finalproject.engineerapp.repositories.AuthoritiesRepository;
 import com.finalproject.engineerapp.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -13,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
-@RestController
+@Controller
 public class RegisterController {
 
     @Autowired
@@ -27,7 +29,7 @@ public class RegisterController {
 
     @GetMapping("/")
     public String index() {
-        return "HellO! Welcome!";
+        return "home";
     }
 
     @GetMapping("/users")
@@ -36,12 +38,12 @@ public class RegisterController {
     }
 
     @PostMapping("/register")
-    public User doRegister(@RequestBody User user) {
+    public User doRegister(@RequestBody User user, String authorityName) {
         String encodedPassword  = passwordEncoder.encode(user.getPassword());
         user.setPassword(encodedPassword);
 
         Authorities boardAuthority = new Authorities();
-        boardAuthority.setAuthority("BOARD");
+        boardAuthority.setAuthority(authorityName);
         boardAuthority.setUser(user);
         user.setAuthorities(boardAuthority);
         userRepository.save(user);
