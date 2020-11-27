@@ -1,9 +1,12 @@
 package com.finalproject.engineerapp.controller;
 
 import com.finalproject.engineerapp.model.Authorities;
+import com.finalproject.engineerapp.model.Creator;
 import com.finalproject.engineerapp.model.User;
 import com.finalproject.engineerapp.repositories.AuthoritiesRepository;
 import com.finalproject.engineerapp.repositories.UserRepository;
+import com.finalproject.engineerapp.service.UserService;
+import org.dom4j.rule.Mode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -22,7 +25,7 @@ public class RegisterController {
     PasswordEncoder passwordEncoder;
 
     @Autowired
-    private UserRepository userRepository;
+    private UserService userService;
 
     @Autowired
     private AuthoritiesRepository authoritiesRepository;
@@ -32,21 +35,23 @@ public class RegisterController {
         return "home";
     }
 
-    @GetMapping("/users")
-    public List<User> getUsers() {
-        return userRepository.findAll();
+    @PostMapping("/adduser")
+    public User addNewUser(@RequestBody User user) {
+        userService.addUser(user);
+
+        return user;
     }
 
     @PostMapping("/register")
-    public User doRegister(@RequestBody User user, String authorityName) {
+    public User doRegister(@RequestBody User user) {
         String encodedPassword  = passwordEncoder.encode(user.getPassword());
         user.setPassword(encodedPassword);
 
         Authorities boardAuthority = new Authorities();
-        boardAuthority.setAuthority(authorityName);
+        boardAuthority.setAuthority("USER");
         boardAuthority.setUser(user);
         user.setAuthorities(boardAuthority);
-        userRepository.save(user);
+        userService.addUser(user);
 
         return user;
     }
