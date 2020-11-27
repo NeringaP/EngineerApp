@@ -2,9 +2,11 @@ package com.finalproject.engineerapp.controller;
 
 import com.finalproject.engineerapp.model.Creator;
 import com.finalproject.engineerapp.model.Engineer;
+import com.finalproject.engineerapp.model.House;
 import com.finalproject.engineerapp.model.Project;
 import com.finalproject.engineerapp.service.CreatorService;
 import com.finalproject.engineerapp.service.EngineerService;
+import com.finalproject.engineerapp.service.HouseService;
 import com.finalproject.engineerapp.service.ProjectService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -26,6 +28,9 @@ public class ProjectController {
 
     @Autowired
     private CreatorService creatorService;
+
+    @Autowired
+    private HouseService houseService;
 
     @GetMapping
     public String projects(Model model) {

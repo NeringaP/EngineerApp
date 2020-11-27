@@ -35,6 +35,11 @@ public class RegisterController {
         return "home";
     }
 
+    @GetMapping("/login?logout")
+    public String logout() {
+        return "home";
+    }
+
     @PostMapping("/adduser")
     public User addNewUser(@RequestBody User user) {
         userService.addUser(user);

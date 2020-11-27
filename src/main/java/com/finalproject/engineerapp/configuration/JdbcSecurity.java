@@ -43,6 +43,7 @@ public class JdbcSecurity extends WebSecurityConfigurerAdapter {
         http.cors().and().csrf().disable();
         http.formLogin();
 
+
         //http.authorizeRequests()
         //  .antMatchers("/welcome").hasRole("BOARD");
 
