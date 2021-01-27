@@ -3,9 +3,8 @@ The app's purpose is to save needed information about projects and executors (en
 
 Local server: http://localhost:8085/
 
-Limited access:             Full access:
-Username - neringa          Username - odeta
-Password - test             Password - test
+Limited access: Username - neringa; Password - test 
+Full access: Username - odeta; Password - test
 
 App uses Java 8, H2 database, Hibernate, Spring, Spring security, Bootstrap, CSS, JS.
 
