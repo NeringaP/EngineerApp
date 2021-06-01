@@ -5,12 +5,15 @@ import com.finalproject.engineerapp.model.House;
 import com.finalproject.engineerapp.repositories.EngineerRepository;
 import com.finalproject.engineerapp.repositories.HouseRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
 
 @Service
+@Transactional
 public class EngineerService {
 
     @Autowired

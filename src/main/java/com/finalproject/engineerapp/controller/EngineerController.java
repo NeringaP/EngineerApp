@@ -2,7 +2,9 @@ package com.finalproject.engineerapp.controller;
 
 import com.finalproject.engineerapp.model.Engineer;
 import com.finalproject.engineerapp.model.Project;
+import com.finalproject.engineerapp.service.EngineerPDFExporter;
 import com.finalproject.engineerapp.service.EngineerService;
+import com.lowagie.text.DocumentException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,6 +13,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.Set;
 
@@ -70,6 +77,22 @@ public class EngineerController {
 
         model.addAttribute("engineers", engineers);
         return "engineers";
+    }
+
+    @GetMapping("/export/pdf")
+    public void exportToPDF(HttpServletResponse response) throws DocumentException, IOException {
+        response.setContentType("application/pdf");
+        DateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd_HH:mm:ss");
+        String currentDateTime = dateFormatter.format(new Date());
+
+        String headerKey = "Content-Disposition";
+        String headerValue = "attachment; filename=engineers_" + currentDateTime + ".pdf";
+        response.setHeader(headerKey, headerValue);
+
+        List<Engineer> engineerList = engineerService.getEngineers();
+
+        EngineerPDFExporter exporter = new EngineerPDFExporter(engineerList);
+        exporter.export(response);
     }
 
 }
