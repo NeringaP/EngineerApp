@@ -17,19 +17,21 @@
         <div class="page-header my-3">
             <h1>Engineers table</h1>
         </div>
-        <div th:switch="${engineers}" class="container">
-            <div class="row">
-                <form class="form-inline col-md-4">
-                    <img src="/search2.svg" width="20" height="20" alt="">
-                    <input class="form-control my-3 col-md-10" id="tableSearch" type="text"
-                           placeholder="Type something to search list items">
-                </form>
+        <div th:switch="${engineers}" class="btn-toolbar justify-content-between" role="toolbar" aria-label="Toolbar with button groups">
+            <form class="form-inline col-md-4">
+                <img src="/search2.svg" width="20" height="20" alt="">
+                <input class="form-control my-3 col-md-10" id="tableSearch" type="text"
+                       placeholder="Type something to search list items">
+            </form>
+            <div class="btn-group" role="group" aria-label="First group">
                 <div sec:authorize="hasAuthority('CREATOR')" class="ml-auto">
                     <p class="my-3">
                         <a href="/engineers/create"  th:href="@{/engineers/create}" class="btn btn-info">Add engineer</a>
                     </p>
+                </div>
+                <div>
                     <p class="my-3">
-                        <a href="/engineers/pdf"  th:href="@{/engineers/export/pdf}" class="btn btn-info">Export to PDF</a>
+                        <a href="/engineers/pdf"  th:href="@{/engineers/export/pdf}" class="btn btn-link">Export to PDF</a>
                     </p>
                 </div>
             </div>

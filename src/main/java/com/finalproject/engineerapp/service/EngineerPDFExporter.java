@@ -21,11 +21,11 @@ public class EngineerPDFExporter {
 
     private void writeTableHeader(PdfPTable table) {
         PdfPCell cell = new PdfPCell();
-        cell.setBackgroundColor(Color.BLACK);
+        cell.setBackgroundColor(Color.LIGHT_GRAY);
         cell.setPadding(5);
 
         Font font = FontFactory.getFont(FontFactory.HELVETICA);
-        font.setColor(Color.LIGHT_GRAY);
+        font.setColor(Color.BLACK);
 
         cell.setPhrase(new Phrase("Engineer ID", font));
         table.addCell(cell);
@@ -41,6 +41,7 @@ public class EngineerPDFExporter {
     }
 
     private void writeTableData(PdfPTable table) {
+
         for(Engineer engineer : listEngineers) {
             table.addCell(String.valueOf(engineer.getId()));
             table.addCell(engineer.getFirstName());

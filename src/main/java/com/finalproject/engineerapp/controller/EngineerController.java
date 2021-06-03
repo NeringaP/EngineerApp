@@ -82,11 +82,11 @@ public class EngineerController {
     @GetMapping("/export/pdf")
     public void exportToPDF(HttpServletResponse response) throws DocumentException, IOException {
         response.setContentType("application/pdf");
-        DateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd_HH:mm:ss");
+        DateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd--HH-mm-ss");
         String currentDateTime = dateFormatter.format(new Date());
 
         String headerKey = "Content-Disposition";
-        String headerValue = "attachment; filename=engineers_" + currentDateTime + ".pdf";
+        String headerValue = "attachment; filename=engineers--" + currentDateTime + ".pdf";
         response.setHeader(headerKey, headerValue);
 
         List<Engineer> engineerList = engineerService.getEngineers();
