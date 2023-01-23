@@ -12,27 +12,27 @@ import java.util.Optional;
 public class CreatorService {
 
     @Autowired
-    private CreatorRepository creatorService;
+    private CreatorRepository creatorRepository;
 
     public List<Creator> getCreators() {
-        List<Creator> creators = creatorService.findAll();
+        List<Creator> creators = creatorRepository.findAll();
         return creators;
     }
 
     public void updateCreator(Creator creator) {
-        creatorService.save(creator);
+        creatorRepository.save(creator);
     }
 
     public void addCreator(Creator creator) {
-        creatorService.save(creator);
+        creatorRepository.save(creator);
     }
 
     public void deleteCreator(Creator creator) {
-        creatorService.delete(creator);
+        creatorRepository.delete(creator);
     }
 
     public Optional<Creator> findCreatorById(Long id) {
-        Optional<Creator> creator = creatorService.findById(id);
+        Optional<Creator> creator = creatorRepository.findById(id);
         return creator;
     }
 }
