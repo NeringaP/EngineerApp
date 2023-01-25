@@ -29,6 +29,14 @@ public class Project {
     @JsonBackReference
     private Creator creator;
 
+    public Project() {
+    }
+
+    public Project(Long id, String name) {
+        this.id = id;
+        this.name = name;
+    }
+
     public Long getId() {
         return id;
     }
