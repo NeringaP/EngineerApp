@@ -22,6 +22,15 @@ public class Engineer{
     @JsonManagedReference
     private Set<Project> projects;
 
+    public Engineer() {
+    }
+
+    public Engineer(Long id, String firstName, String lastName, String email) {
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+    }
 
     public Long getId() {
         return id;
