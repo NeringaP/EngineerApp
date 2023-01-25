@@ -17,6 +17,16 @@ public class User {
     @OneToOne(mappedBy="user", cascade = CascadeType.ALL)
     private Authorities authorities;
 
+    public User() {
+    }
+
+    public User(Long id, String username, String password, boolean enabled) {
+        this.id = id;
+        this.username = username;
+        this.password = password;
+        this.enabled = enabled;
+    }
+
     public Long getId() {
         return id;
     }
