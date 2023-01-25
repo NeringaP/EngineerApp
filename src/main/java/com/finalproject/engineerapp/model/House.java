@@ -21,6 +21,11 @@ public class House {
     public House() {
     }
 
+    public House(Long id, String name) {
+        this.id = id;
+        this.name = name;
+    }
+
     public Long getId() {
         return id;
     }
