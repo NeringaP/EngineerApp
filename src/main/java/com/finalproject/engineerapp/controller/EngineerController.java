@@ -92,7 +92,7 @@ public class EngineerController {
         List<Engineer> engineerList = engineerService.getEngineers();
 
         EngineerPDFExporter exporter = new EngineerPDFExporter(engineerList);
-        exporter.export(response);
+        exporter.exportPDF(response);
     }
 
 }
