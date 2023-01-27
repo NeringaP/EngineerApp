@@ -34,37 +34,4 @@ public class RegisterController {
     public String index() {
         return "home";
     }
-
-    @PostMapping("/adduser")
-    public User addNewUser(@RequestBody User user) {
-        userService.addUser(user);
-
-        return user;
-    }
-
-    @PostMapping("/register")
-    public User doRegister(@RequestBody User user) {
-        String encodedPassword  = passwordEncoder.encode(user.getPassword());
-        user.setPassword(encodedPassword);
-
-        Authorities boardAuthority = new Authorities();
-        boardAuthority.setAuthority("USER");
-        boardAuthority.setUser(user);
-        user.setAuthorities(boardAuthority);
-        userService.addUser(user);
-
-        return user;
-    }
-
-    @GetMapping("/teises")
-    public List<Authorities> getAuthorities() {
-        return authoritiesRepository.findAll();
-    }
-
-    @PostMapping("/addteise")
-    public List<Authorities> addAuthority(@RequestBody Authorities authorities) {
-        authoritiesRepository.save(authorities);
-
-        return authoritiesRepository.findAll();
-    }
 }

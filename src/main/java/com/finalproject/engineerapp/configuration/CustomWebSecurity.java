@@ -14,7 +14,7 @@ import javax.sql.DataSource;
 
 @Configuration
 @EnableWebSecurity
-public class JdbcSecurity extends WebSecurityConfigurerAdapter {
+public class CustomWebSecurity extends WebSecurityConfigurerAdapter {
 
     @Autowired
     private DataSource dataSource;
@@ -26,8 +26,7 @@ public class JdbcSecurity extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth
-                .jdbcAuthentication()
+        auth.jdbcAuthentication()
                 .dataSource(dataSource)
                 .passwordEncoder(passwordEncoder())
                 .usersByUsernameQuery(
@@ -46,18 +45,7 @@ public class JdbcSecurity extends WebSecurityConfigurerAdapter {
         http.formLogin();
         http.logout()
         .logoutSuccessUrl("/home");
-
-
-        //http.authorizeRequests()
-        //  .antMatchers("/welcome").hasRole("BOARD");
-
-        //konfiguracija matomumams eina cia
-        http
-                .authorizeRequests()
-                //.antMatchers("/projects").authenticated()
-                //.antMatchers("/projects").hasRole("BOARD")
-
-
+        http.authorizeRequests()
                 .antMatchers("/home", "/signin", "/register").permitAll()
                 .antMatchers("/houses", "/projects", "/engineers", "/engineers/export/pdf", "/creators").hasAnyAuthority(
                         "CREATOR", "USER")
