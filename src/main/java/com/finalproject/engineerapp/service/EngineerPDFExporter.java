@@ -13,6 +13,20 @@ import java.io.IOException;
 import java.util.List;
 
 public class EngineerPDFExporter {
+
+    private static final int TABLE_COLUMNS = 4;
+    private static final String TITLE_FONT = FontFactory.HELVETICA_BOLD;
+    private static final String HEADER_FONT = FontFactory.HELVETICA;
+    private static final Color TITLE_FONT_COLOR = Color.GRAY;
+    private static final Color HEADER_FONT_COLOR = Color.BLACK;
+    private static final Color HEADER_COLOR = Color.LIGHT_GRAY;
+    private static final String TITLE = "List of Engineers";
+    private static final String HEADER_COLUMN_1 = "Engineer ID";
+    private static final String HEADER_COLUMN_2 = "First name";
+    private static final String HEADER_COLUMN_3 = "Last name";
+    private static final String HEADER_COLUMN_4 = "E-mail";
+
+
     private List<Engineer> listEngineers;
 
     public EngineerPDFExporter(List<Engineer> listEngineers) {
@@ -20,23 +34,35 @@ public class EngineerPDFExporter {
     }
 
     private void writeTableHeader(PdfPTable table) {
+        PdfPCell cell = getHeaderCell();
+        Font font = getHeaderFont();
+        setColumnsHeaders(table, cell, font);
+    }
+
+    private static PdfPCell getHeaderCell() {
         PdfPCell cell = new PdfPCell();
-        cell.setBackgroundColor(Color.LIGHT_GRAY);
+        cell.setBackgroundColor(HEADER_COLOR);
         cell.setPadding(5);
+        return cell;
+    }
 
-        Font font = FontFactory.getFont(FontFactory.HELVETICA);
-        font.setColor(Color.BLACK);
+    private static Font getHeaderFont() {
+        Font font = FontFactory.getFont(HEADER_FONT);
+        font.setColor(HEADER_FONT_COLOR);
+        return font;
+    }
 
-        cell.setPhrase(new Phrase("Engineer ID", font));
+    private static void setColumnsHeaders(PdfPTable table, PdfPCell cell, Font font) {
+        cell.setPhrase(new Phrase(HEADER_COLUMN_1, font));
         table.addCell(cell);
 
-        cell.setPhrase(new Phrase("First name", font));
+        cell.setPhrase(new Phrase(HEADER_COLUMN_2, font));
         table.addCell(cell);
 
-        cell.setPhrase(new Phrase("Last name", font));
+        cell.setPhrase(new Phrase(HEADER_COLUMN_3, font));
         table.addCell(cell);
 
-        cell.setPhrase(new Phrase("E-mail", font));
+        cell.setPhrase(new Phrase(HEADER_COLUMN_4, font));
         table.addCell(cell);
     }
 
@@ -50,30 +76,37 @@ public class EngineerPDFExporter {
         }
     }
 
-    public void export(HttpServletResponse response) throws DocumentException, IOException {
+    public void exportPDF(HttpServletResponse response) throws DocumentException, IOException {
         Document document = new Document(PageSize.A4);
         PdfWriter.getInstance(document, response.getOutputStream());
-
         document.open();
-        Font font = FontFactory.getFont(FontFactory.HELVETICA_BOLD);
-        font.setSize(18);
-        font.setColor(Color.GRAY);
+        document.add(getTitle());
+        document.add(getTable());
+        document.close();
+    }
 
-        Paragraph paragraph = new Paragraph("List of Engineers", font);
-        paragraph.setAlignment(Paragraph.ALIGN_CENTER);
+    private PdfPTable getTable() {
+        PdfPTable table = createTable();
+        writeTableHeader(table);
+        writeTableData(table);
+        return table;
+    }
 
-        document.add(paragraph);
-
-        PdfPTable table = new PdfPTable(4);
+    private static PdfPTable createTable() {
+        PdfPTable table = new PdfPTable(TABLE_COLUMNS);
         table.setWidthPercentage(100f);
         table.setWidths(new float[] {1.5f, 3.5f, 3.0f, 3.0f});
         table.setSpacingBefore(10);
+        return table;
+    }
 
-        writeTableHeader(table);
-        writeTableData(table);
+    private static Paragraph getTitle() {
+        Font font = FontFactory.getFont(TITLE_FONT);
+        font.setSize(18);
+        font.setColor(TITLE_FONT_COLOR);
 
-        document.add(table);
-
-        document.close();
+        Paragraph title = new Paragraph(TITLE, font);
+        title.setAlignment(Paragraph.ALIGN_CENTER);
+        return title;
     }
 }
