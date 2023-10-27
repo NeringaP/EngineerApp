@@ -61,7 +61,7 @@ public class JdbcSecurity extends WebSecurityConfigurerAdapter {
                 .antMatchers("/home", "/signin", "/register").permitAll()
                 .antMatchers("/houses", "/projects", "/engineers", "/engineers/export/pdf", "/creators").hasAnyAuthority(
                         "CREATOR", "USER")
-                .antMatchers("/houses/**", "/projects/**", "/engineers/**", "/creators/**").hasAuthority("CREATOR")
+                .antMatchers("/houses/**", "/projects/**", "/engineers/**", "/creators/**", "/users/**").hasAuthority("CREATOR")
                 .and()
                 .authorizeRequests().antMatchers("/h2-console/**").permitAll()
                 .and()
