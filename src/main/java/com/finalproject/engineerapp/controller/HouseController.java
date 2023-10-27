@@ -18,11 +18,15 @@ import java.util.List;
 @RequestMapping("/houses")
 public class HouseController {
 
-    @Autowired
     private HouseService houseService;
 
-    @Autowired
     private ProjectService projectService;
+
+    @Autowired
+    public HouseController(HouseService houseService, ProjectService projectService) {
+        this.houseService = houseService;
+        this.projectService = projectService;
+    }
 
     @GetMapping
     public String houses(Model model) {

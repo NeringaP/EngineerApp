@@ -12,8 +12,12 @@ import java.util.Optional;
 @Service
 public class HouseService {
 
-    @Autowired
     private HouseRepository houseRepository;
+
+    @Autowired
+    public HouseService(HouseRepository houseRepository) {
+        this.houseRepository = houseRepository;
+    }
 
     public List<House> getHouses() {
         List<House> houses = houseRepository.findAll();

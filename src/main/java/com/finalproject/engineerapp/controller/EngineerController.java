@@ -25,8 +25,12 @@ import java.util.Set;
 @RequestMapping("/engineers")
 public class EngineerController {
 
-    @Autowired
     private EngineerService engineerService;
+
+    @Autowired
+    public EngineerController(EngineerService engineerService) {
+        this.engineerService = engineerService;
+    }
 
     @GetMapping
     public String engineers(Model model) {

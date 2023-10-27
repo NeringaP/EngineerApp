@@ -20,17 +20,22 @@ import java.util.List;
 @RequestMapping("/projects")
 public class ProjectController {
 
-    @Autowired
     private ProjectService projectService;
 
-    @Autowired
     private EngineerService engineerService;
 
-    @Autowired
     private CreatorService creatorService;
 
-    @Autowired
     private HouseService houseService;
+
+    @Autowired
+    public ProjectController(ProjectService projectService, EngineerService engineerService,
+                             CreatorService creatorService, HouseService houseService) {
+        this.projectService = projectService;
+        this.engineerService = engineerService;
+        this.creatorService = creatorService;
+        this.houseService = houseService;
+    }
 
     @GetMapping
     public String projects(Model model) {

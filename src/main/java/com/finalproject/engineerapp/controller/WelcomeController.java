@@ -12,8 +12,12 @@ import java.security.Principal;
 @RestController
 public class WelcomeController {
 
-    @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    public WelcomeController(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
 
     @GetMapping("/welcome")
     public String welcome(Principal principal, Authentication authentication) {

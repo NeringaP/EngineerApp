@@ -21,14 +21,19 @@ import java.util.List;
 @Controller
 public class RegisterController {
 
-    @Autowired
     PasswordEncoder passwordEncoder;
 
-    @Autowired
     private UserService userService;
 
-    @Autowired
     private AuthoritiesRepository authoritiesRepository;
+
+    @Autowired
+    public RegisterController(PasswordEncoder passwordEncoder, UserService userService,
+                              AuthoritiesRepository authoritiesRepository) {
+        this.passwordEncoder = passwordEncoder;
+        this.userService = userService;
+        this.authoritiesRepository = authoritiesRepository;
+    }
 
     @GetMapping("/")
     public String index() {

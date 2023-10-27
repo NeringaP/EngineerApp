@@ -20,9 +20,12 @@ import java.util.Set;
 @RequestMapping("/creators")
 public class CreatorController {
 
+    private CreatorService creatorService;
 
     @Autowired
-    private CreatorService creatorService;
+    public CreatorController(CreatorService creatorService) {
+        this.creatorService = creatorService;
+    }
 
     @GetMapping
     public String creators(Model model) {

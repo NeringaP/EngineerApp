@@ -16,8 +16,12 @@ import java.util.Optional;
 @Transactional
 public class EngineerService {
 
-    @Autowired
     private EngineerRepository engineerRepository;
+
+    @Autowired
+    public EngineerService(EngineerRepository engineerRepository) {
+        this.engineerRepository = engineerRepository;
+    }
 
     public List<Engineer> getEngineers() {
         List<Engineer> engineers = engineerRepository.findAll();

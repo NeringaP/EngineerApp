@@ -12,8 +12,12 @@ import java.util.Optional;
 @Service
 public class ProjectService {
 
-    @Autowired
     private ProjectRepository projectRepository;
+
+    @Autowired
+    public ProjectService(ProjectRepository projectRepository) {
+        this.projectRepository = projectRepository;
+    }
 
     public List<Project> getProjects() {
         List<Project> projects = projectRepository.findAll();

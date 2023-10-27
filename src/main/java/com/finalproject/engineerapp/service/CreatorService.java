@@ -11,8 +11,12 @@ import java.util.Optional;
 @Service
 public class CreatorService {
 
-    @Autowired
+
     private CreatorRepository creatorRepository;
+    @Autowired
+    public CreatorService(CreatorRepository creatorRepository) {
+        this.creatorRepository = creatorRepository;
+    }
 
     public List<Creator> getCreators() {
         List<Creator> creators = creatorRepository.findAll();
