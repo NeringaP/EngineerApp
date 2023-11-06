@@ -7,12 +7,15 @@ import javax.persistence.*;
 import java.util.Set;
 
 @Entity
+@Table(name="project")
 public class Project {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name="id")
     private Long id;
 
+    @Column(name="name")
     private String name;
 
     @OneToMany(mappedBy = "project", cascade = CascadeType.ALL)
