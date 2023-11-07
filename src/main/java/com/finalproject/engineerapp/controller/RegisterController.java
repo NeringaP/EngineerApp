@@ -1,20 +1,15 @@
 package com.finalproject.engineerapp.controller;
 
 import com.finalproject.engineerapp.model.Authorities;
-import com.finalproject.engineerapp.model.Creator;
 import com.finalproject.engineerapp.model.User;
 import com.finalproject.engineerapp.repositories.AuthoritiesRepository;
 import com.finalproject.engineerapp.repositories.UserRepository;
-import com.finalproject.engineerapp.service.UserService;
-import org.dom4j.rule.Mode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
@@ -23,15 +18,15 @@ public class RegisterController {
 
     PasswordEncoder passwordEncoder;
 
-    private UserService userService;
+    private UserRepository userRepository;
 
     private AuthoritiesRepository authoritiesRepository;
 
     @Autowired
-    public RegisterController(PasswordEncoder passwordEncoder, UserService userService,
+    public RegisterController(PasswordEncoder passwordEncoder, UserRepository userRepository,
                               AuthoritiesRepository authoritiesRepository) {
         this.passwordEncoder = passwordEncoder;
-        this.userService = userService;
+        this.userRepository = userRepository;
         this.authoritiesRepository = authoritiesRepository;
     }
 
@@ -42,7 +37,7 @@ public class RegisterController {
 
     @PostMapping("/adduser")
     public User addNewUser(@RequestBody User user) {
-        userService.addUser(user);
+        userRepository.save(user);
 
         return user;
     }
@@ -56,7 +51,7 @@ public class RegisterController {
         boardAuthority.setAuthority("USER");
         boardAuthority.setUser(user);
         user.setAuthorities(boardAuthority);
-        userService.addUser(user);
+        userRepository.save(user);
 
         return user;
     }

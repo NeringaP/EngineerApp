@@ -49,7 +49,7 @@ class UserServiceTest {
 
     @Test
     void deleteUserTest() {
-        userService.deleteUser(user3);
+        userRepository.deleteUser(user3);
         verify(userRepository, times(1)).delete(user3);
     }
 

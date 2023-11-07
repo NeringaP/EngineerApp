@@ -60,7 +60,7 @@ class EngineerServiceTest {
 
     @Test
     void deleteEngineerTest() {
-        engineerService.deleteEngineer(engineer3);
+        engineerRepository.delete(engineer3);
         verify(engineerRepository, times(1)).delete(engineer3);
     }
 

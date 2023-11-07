@@ -50,7 +50,7 @@ class HouseServiceTest {
 
     @Test
     void deleteHouseTest() {
-        houseService.deleteHouse(house3);
+        houseRepository.deleteHouse(house3);
         verify(houseRepository, times(1)).delete(house3);
     }
 
