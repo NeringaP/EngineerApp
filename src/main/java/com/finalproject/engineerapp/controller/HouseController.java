@@ -1,18 +1,23 @@
 package com.finalproject.engineerapp.controller;
 
+import com.finalproject.engineerapp.exception.InvalidIdException;
 import com.finalproject.engineerapp.model.House;
 import com.finalproject.engineerapp.model.Project;
 import com.finalproject.engineerapp.repositories.HouseRepository;
 import com.finalproject.engineerapp.repositories.ProjectRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 @RequestMapping("/houses")
@@ -51,8 +56,7 @@ public class HouseController {
 
     @GetMapping("/edit/{id}")
     public String showEditForm(@PathVariable("id") Long id, Model model) {
-        House house = houseRepository.findById(id).orElseThrow(() -> new IllegalArgumentException(
-                "Invalid house Id:" + id));
+        House house = houseRepository.findById(id).orElseThrow(() -> new InvalidIdException("Invalid house Id: " + id));
         model.addAttribute("house", house);
         List<Project> projects = projectRepository.findAll();
         model.addAttribute("projects", projects);
@@ -75,5 +79,21 @@ public class HouseController {
         List<House> houses = houseRepository.findAll();
         model.addAttribute("houses", houses);
         return "houses";
+    }
+
+    @ExceptionHandler
+    public ResponseEntity<ErrorResponse> handleInvalidIdException(InvalidIdException e) {
+        ErrorResponse errorResponse = new ErrorResponse();
+        errorResponse.setMessage(e.getMessage());
+        errorResponse.setStatus(HttpStatus.NOT_FOUND.value());
+        return new ResponseEntity<>(errorResponse, HttpStatus.NOT_FOUND);
+    }
+
+    @ExceptionHandler
+    public ResponseEntity<ErrorResponse> handleException(Exception e) {
+        ErrorResponse errorResponse = new ErrorResponse();
+        errorResponse.setMessage(e.getMessage());
+        errorResponse.setStatus(HttpStatus.BAD_REQUEST.value());
+        return new ResponseEntity<>(errorResponse, HttpStatus.BAD_REQUEST);
     }
 }
