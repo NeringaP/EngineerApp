@@ -6,18 +6,14 @@ import com.finalproject.engineerapp.model.Project;
 import com.finalproject.engineerapp.repositories.HouseRepository;
 import com.finalproject.engineerapp.repositories.ProjectRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
-import java.util.Optional;
 
 @Controller
 @RequestMapping("/houses")
@@ -81,19 +77,5 @@ public class HouseController {
         return "houses";
     }
 
-    @ExceptionHandler
-    public ResponseEntity<ErrorResponse> handleInvalidIdException(InvalidIdException e) {
-        ErrorResponse errorResponse = new ErrorResponse();
-        errorResponse.setMessage(e.getMessage());
-        errorResponse.setStatus(HttpStatus.NOT_FOUND.value());
-        return new ResponseEntity<>(errorResponse, HttpStatus.NOT_FOUND);
-    }
 
-    @ExceptionHandler
-    public ResponseEntity<ErrorResponse> handleException(Exception e) {
-        ErrorResponse errorResponse = new ErrorResponse();
-        errorResponse.setMessage(e.getMessage());
-        errorResponse.setStatus(HttpStatus.BAD_REQUEST.value());
-        return new ResponseEntity<>(errorResponse, HttpStatus.BAD_REQUEST);
-    }
 }
