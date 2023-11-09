@@ -4,6 +4,8 @@ import com.finalproject.engineerapp.model.Project;
 import com.finalproject.engineerapp.repositories.ProjectRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
 import java.util.List;
 import java.util.Optional;
 
@@ -24,11 +26,13 @@ public class ProjectServiceImpl implements ProjectService {
     }
 
     @Override
+    @Transactional
     public void save(Project project) {
         projectRepository.save(project);
     }
 
     @Override
+    @Transactional
     public void delete(Project project) {
         projectRepository.delete(project);
     }

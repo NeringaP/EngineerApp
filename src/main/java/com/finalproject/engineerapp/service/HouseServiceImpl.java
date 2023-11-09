@@ -4,6 +4,7 @@ import com.finalproject.engineerapp.model.House;
 import com.finalproject.engineerapp.repositories.HouseRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -25,11 +26,13 @@ public class HouseServiceImpl implements HouseService {
     }
 
     @Override
+    @Transactional
     public void save(House house) {
         houseRepository.save(house);
     }
 
     @Override
+    @Transactional
     public void delete(House house) {
         houseRepository.delete(house);
     }

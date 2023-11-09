@@ -4,6 +4,7 @@ import com.finalproject.engineerapp.model.Authorities;
 import com.finalproject.engineerapp.repositories.AuthoritiesRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -27,11 +28,13 @@ public class AuthoritiesServiceImpl implements AuthoritiesService {
     }
 
     @Override
+    @Transactional
     public void save(Authorities authorities) {
         authoritiesRepository.save(authorities);
     }
 
     @Override
+    @Transactional
     public void delete(Authorities authorities) {
         authoritiesRepository.delete(authorities);
     }
