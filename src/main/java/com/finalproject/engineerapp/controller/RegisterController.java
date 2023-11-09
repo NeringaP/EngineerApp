@@ -2,8 +2,8 @@ package com.finalproject.engineerapp.controller;
 
 import com.finalproject.engineerapp.model.Authorities;
 import com.finalproject.engineerapp.model.User;
-import com.finalproject.engineerapp.repositories.AuthoritiesRepository;
-import com.finalproject.engineerapp.repositories.UserRepository;
+import com.finalproject.engineerapp.service.AuthoritiesService;
+import com.finalproject.engineerapp.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -18,16 +18,16 @@ public class RegisterController {
 
     PasswordEncoder passwordEncoder;
 
-    private UserRepository userRepository;
+    private UserService userService;
 
-    private AuthoritiesRepository authoritiesRepository;
+    private AuthoritiesService authoritiesService;
 
     @Autowired
-    public RegisterController(PasswordEncoder passwordEncoder, UserRepository userRepository,
-                              AuthoritiesRepository authoritiesRepository) {
+    public RegisterController(PasswordEncoder passwordEncoder, UserService userService,
+                              AuthoritiesService authoritiesService) {
         this.passwordEncoder = passwordEncoder;
-        this.userRepository = userRepository;
-        this.authoritiesRepository = authoritiesRepository;
+        this.userService = userService;
+        this.authoritiesService = authoritiesService;
     }
 
     @GetMapping("/")
@@ -37,7 +37,7 @@ public class RegisterController {
 
     @PostMapping("/adduser")
     public User addNewUser(@RequestBody User user) {
-        userRepository.save(user);
+        userService.save(user);
 
         return user;
     }
@@ -51,20 +51,20 @@ public class RegisterController {
         boardAuthority.setAuthority("USER");
         boardAuthority.setUser(user);
         user.setAuthorities(boardAuthority);
-        userRepository.save(user);
+        userService.save(user);
 
         return user;
     }
 
     @GetMapping("/teises")
     public List<Authorities> getAuthorities() {
-        return authoritiesRepository.findAll();
+        return authoritiesService.findAll();
     }
 
     @PostMapping("/addteise")
     public List<Authorities> addAuthority(@RequestBody Authorities authorities) {
-        authoritiesRepository.save(authorities);
+        authoritiesService.save(authorities);
 
-        return authoritiesRepository.findAll();
+        return authoritiesService.findAll();
     }
 }

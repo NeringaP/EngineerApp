@@ -3,8 +3,8 @@ package com.finalproject.engineerapp.controller;
 import com.finalproject.engineerapp.exception.InvalidIdException;
 import com.finalproject.engineerapp.model.House;
 import com.finalproject.engineerapp.model.Project;
-import com.finalproject.engineerapp.repositories.HouseRepository;
-import com.finalproject.engineerapp.repositories.ProjectRepository;
+import com.finalproject.engineerapp.service.HouseService;
+import com.finalproject.engineerapp.service.ProjectService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,60 +19,60 @@ import java.util.List;
 @RequestMapping("/houses")
 public class HouseController {
 
-    private ProjectRepository projectRepository;
-    private HouseRepository houseRepository;
+    private ProjectService projectService;
+    private HouseService houseService;
 
     @Autowired
-    public HouseController(ProjectRepository projectRepository, HouseRepository houseRepository) {
-        this.projectRepository = projectRepository;
-        this.houseRepository = houseRepository;
+    public HouseController(ProjectService projectService, HouseService houseService) {
+        this.projectService = projectService;
+        this.houseService = houseService;
     }
 
     @GetMapping
     public String houses(Model model) {
-        List<House> houses = houseRepository.findAll();
+        List<House> houses = houseService.findAll();
         model.addAttribute("houses", houses);
         return "houses";
     }
 
     @GetMapping("/create")
     public String showCreateNewHouseForm (House house, Model model) {
-        List<Project> projects = projectRepository.findAll();
+        List<Project> projects = projectService.findAll();
         model.addAttribute("projects", projects);
         return "house_add";
     }
 
     @PostMapping("/add")
     public String add(House house, Model model) {
-        houseRepository.save(house);
-        List<House> houses = houseRepository.findAll();
+        houseService.save(house);
+        List<House> houses = houseService.findAll();
         model.addAttribute("houses", houses);
         return "houses";
     }
 
     @GetMapping("/edit/{id}")
     public String showEditForm(@PathVariable("id") Long id, Model model) {
-        House house = houseRepository.findById(id).orElseThrow(() -> new InvalidIdException("Invalid house Id: " + id));
+        House house = houseService.findById(id).orElseThrow(() -> new InvalidIdException("Invalid house Id: " + id));
         model.addAttribute("house", house);
-        List<Project> projects = projectRepository.findAll();
+        List<Project> projects = projectService.findAll();
         model.addAttribute("projects", projects);
         return "house_edit";
     }
 
     @PostMapping("/update/{id}")
     public String update(@PathVariable("id") Long id, House house, Model model) {
-        houseRepository.save(house);
-        List<House> houses = houseRepository.findAll();
+        houseService.save(house);
+        List<House> houses = houseService.findAll();
         model.addAttribute("houses", houses);
         return "houses";
     }
 
     @GetMapping("/delete/{id}")
     public String delete(@PathVariable("id") Long id, Model model)  {
-        House house = houseRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid " +
+        House house = houseService.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid " +
                 "house Id:" + id));
-        houseRepository.delete(house);
-        List<House> houses = houseRepository.findAll();
+        houseService.delete(house);
+        List<House> houses = houseService.findAll();
         model.addAttribute("houses", houses);
         return "houses";
     }

@@ -1,7 +1,7 @@
 package com.finalproject.engineerapp.controller;
 
 import com.finalproject.engineerapp.model.User;
-import com.finalproject.engineerapp.repositories.UserRepository;
+import com.finalproject.engineerapp.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -11,16 +11,16 @@ import java.util.List;
 @RestController
 public class UserController {
 
-    private UserRepository userRepository;
+    private UserService userService;
 
     @Autowired
-    public UserController(UserRepository userRepository) {
-        this.userRepository = userRepository;
+    public UserController(UserService userService) {
+        this.userService = userService;
     }
 
     @GetMapping("/users")
     public List<User> getUsers() {
-        return userRepository.findAll();
+        return userService.findAll();
     }
 
     @GetMapping("/signin")

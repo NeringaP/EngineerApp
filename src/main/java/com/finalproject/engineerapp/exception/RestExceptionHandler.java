@@ -1,6 +1,6 @@
 package com.finalproject.engineerapp.exception;
 
-import com.finalproject.engineerapp.controller.ErrorResponse;
+import com.finalproject.engineerapp.model.ErrorResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;

@@ -2,8 +2,8 @@ package com.finalproject.engineerapp.controller;
 
 import com.finalproject.engineerapp.model.Engineer;
 import com.finalproject.engineerapp.model.Project;
-import com.finalproject.engineerapp.repositories.EngineerRepository;
 import com.finalproject.engineerapp.service.EngineerPDFExporter;
+import com.finalproject.engineerapp.service.EngineerService;
 import com.lowagie.text.DocumentException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -25,16 +25,16 @@ import java.util.Set;
 @RequestMapping("/engineers")
 public class EngineerController {
 
-    private EngineerRepository engineerRepository;
+    private EngineerService engineerService;
 
     @Autowired
-    public EngineerController(EngineerRepository engineerRepository) {
-        this.engineerRepository = engineerRepository;
+    public EngineerController(EngineerService engineerService) {
+        this.engineerService = engineerService;
     }
 
     @GetMapping
     public String engineers(Model model) {
-        List<Engineer> engineers = engineerRepository.findAll();
+        List<Engineer> engineers = engineerService.findAll();
         model.addAttribute("engineers", engineers);
         return "engineers";
     }
@@ -46,15 +46,15 @@ public class EngineerController {
 
     @PostMapping("/add")
     public String add(Engineer engineer, Model model) {
-        engineerRepository.save(engineer);
-        List<Engineer> engineers = engineerRepository.findAll();
+        engineerService.save(engineer);
+        List<Engineer> engineers = engineerService.findAll();
         model.addAttribute("engineers", engineers);
         return "engineers";
     }
 
     @GetMapping("/edit/{id}")
     public String showEditForm(@PathVariable("id") Long id, Model model) {
-        Engineer engineer = engineerRepository.findById(id).orElseThrow(() -> new IllegalArgumentException(
+        Engineer engineer = engineerService.findById(id).orElseThrow(() -> new IllegalArgumentException(
                 "Invalid engineer Id:" + id));
         model.addAttribute("engineer", engineer);
         return "engineer_edit";
@@ -62,22 +62,22 @@ public class EngineerController {
 
     @PostMapping("/update/{id}")
     public String update(@PathVariable("id") Long id, Engineer engineer, Model model) {
-        engineerRepository.save(engineer);
-        List<Engineer> engineers = engineerRepository.findAll();
+        engineerService.save(engineer);
+        List<Engineer> engineers = engineerService.findAll();
         model.addAttribute("engineers", engineers);
         return "engineers";
     }
 
     @GetMapping("/delete/{id}")
     public String delete(@PathVariable("id") Long id, Model model)  {
-        Engineer engineer = engineerRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid " +
+        Engineer engineer = engineerService.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid " +
                 "engineer Id:" + id));
         Set<Project> projects = engineer.getProjects();
         for (Project project : projects) {
             project.setEngineer(null);
         }
-        engineerRepository.delete(engineer);
-        List<Engineer> engineers = engineerRepository.findAll();
+        engineerService.delete(engineer);
+        List<Engineer> engineers = engineerService.findAll();
 
         model.addAttribute("engineers", engineers);
         return "engineers";
@@ -93,7 +93,7 @@ public class EngineerController {
         String headerValue = "attachment; filename=engineers--" + currentDateTime + ".pdf";
         response.setHeader(headerKey, headerValue);
 
-        List<Engineer> engineerList = engineerRepository.findAll();
+        List<Engineer> engineerList = engineerService.findAll();
 
         EngineerPDFExporter exporter = new EngineerPDFExporter(engineerList);
         exporter.exportPDF(response);

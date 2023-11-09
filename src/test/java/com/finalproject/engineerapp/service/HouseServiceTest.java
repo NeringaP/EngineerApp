@@ -18,7 +18,7 @@ import static org.mockito.Mockito.*;
 class HouseServiceTest {
 
     @InjectMocks
-    private HouseService houseService;
+    private HouseServiceImpl houseService;
 
     @Mock
     private HouseRepository houseRepository;

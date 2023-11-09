@@ -2,7 +2,7 @@ package com.finalproject.engineerapp.controller;
 
 import com.finalproject.engineerapp.model.Creator;
 import com.finalproject.engineerapp.model.Project;
-import com.finalproject.engineerapp.repositories.CreatorRepository;
+import com.finalproject.engineerapp.service.CreatorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,16 +18,16 @@ import java.util.Set;
 @RequestMapping("/creators")
 public class CreatorController {
 
-    private CreatorRepository creatorRepository;
+    private CreatorService creatorService;
 
     @Autowired
-    public CreatorController(CreatorRepository creatorRepository) {
-        this.creatorRepository = creatorRepository;
+    public CreatorController(CreatorService creatorService) {
+        this.creatorService = creatorService;
     }
 
     @GetMapping
     public String creators(Model model) {
-        List<Creator> creators = creatorRepository.findAll();
+        List<Creator> creators = creatorService.findAll();
         model.addAttribute("creators", creators);
         return "creators";
     }
@@ -39,15 +39,15 @@ public class CreatorController {
 
     @PostMapping("/add")
     public String add(Creator creator, Model model) {
-        creatorRepository.save(creator);
-        List<Creator> creators = creatorRepository.findAll();
+        creatorService.save(creator);
+        List<Creator> creators = creatorService.findAll();
         model.addAttribute("creators", creators);
         return "creators";
     }
 
     @GetMapping("/edit/{id}")
     public String showEditForm(@PathVariable("id") Long id, Model model) {
-        Creator creator = creatorRepository.findById(id).orElseThrow(() -> new IllegalArgumentException(
+        Creator creator = creatorService.findById(id).orElseThrow(() -> new IllegalArgumentException(
                 "Invalid creator Id:" + id));
         model.addAttribute("creator", creator);
         return "creator_edit";
@@ -55,22 +55,22 @@ public class CreatorController {
 
     @PostMapping("/update/{id}")
     public String update(@PathVariable("id") Long id, Creator creator, Model model) {
-        creatorRepository.save(creator);
-        List<Creator> creators = creatorRepository.findAll();
+        creatorService.save(creator);
+        List<Creator> creators = creatorService.findAll();
         model.addAttribute("creators", creators);
         return "creators";
     }
 
     @GetMapping("/delete/{id}")
     public String delete(@PathVariable("id") Long id, Model model)  {
-        Creator creator = creatorRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid " +
+        Creator creator = creatorService.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid " +
                 "creator Id:" + id));
         Set<Project> projects = creator.getProjects();
         for (Project project : projects) {
             project.setCreator(null);
         }
-        creatorRepository.delete(creator);
-        List<Creator> creators = creatorRepository.findAll();
+        creatorService.delete(creator);
+        List<Creator> creators = creatorService.findAll();
 
         model.addAttribute("creators", creators);
         return "creators";

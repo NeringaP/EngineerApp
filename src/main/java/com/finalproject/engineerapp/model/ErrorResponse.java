@@ -1,4 +1,4 @@
-package com.finalproject.engineerapp.controller;
+package com.finalproject.engineerapp.model;
 
 public class ErrorResponse {
 

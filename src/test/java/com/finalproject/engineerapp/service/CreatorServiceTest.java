@@ -18,7 +18,7 @@ import static org.mockito.Mockito.*;
 class CreatorServiceTest {
 
     @InjectMocks
-    private CreatorService creatorService;
+    private CreatorServiceImpl creatorService;
 
     @Mock
     private CreatorRepository creatorRepository;
