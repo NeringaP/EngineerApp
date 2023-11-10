@@ -3,11 +3,12 @@ package com.finalproject.engineerapp.model;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Set;
 
 @Entity
 @Table(name="engineer")
-public class Engineer{
+public class Engineer {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,7 +25,7 @@ public class Engineer{
     private String email;
 
     @OneToMany(mappedBy = "engineer")
-    @JsonManagedReference
+    @JsonManagedReference("engineer-projects")
     private Set<Project> projects;
 
     public Engineer() {

@@ -24,7 +24,7 @@ public class Project {
 
     @ManyToOne
     @JoinColumn(name = "engineer_id")
-    @JsonBackReference
+    @JsonBackReference("engineer-projects")
     private Engineer engineer;
 
     @ManyToOne

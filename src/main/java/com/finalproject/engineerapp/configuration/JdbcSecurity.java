@@ -58,7 +58,7 @@ public class JdbcSecurity extends WebSecurityConfigurerAdapter {
                 //.antMatchers("/projects").hasRole("BOARD")
 
 
-                .antMatchers("/home", "/signin", "/register").permitAll()
+                .antMatchers("/home", "/signin", "/register", "/api/**").permitAll()
                 .antMatchers("/houses", "/projects", "/engineers", "/engineers/export/pdf", "/creators").hasAnyAuthority(
                         "CREATOR", "USER")
                 .antMatchers("/houses/**", "/projects/**", "/engineers/**", "/creators/**", "/users/**").hasAuthority("CREATOR")
@@ -67,7 +67,7 @@ public class JdbcSecurity extends WebSecurityConfigurerAdapter {
                 .and()
                 .headers().frameOptions().disable()
                 .and()
-                .csrf().ignoringAntMatchers("/h2-console/**")
+                .csrf().ignoringAntMatchers("/h2-console/**", "/api/**")
                 .and()
                 .cors().disable();
     }

@@ -8,9 +8,11 @@ import java.util.Optional;
 public interface EngineerService {
     List<Engineer> findAll();
 
-    void save(Engineer engineer);
+    Engineer save(Engineer engineer);
 
     void delete(Engineer engineer);
+
+    Long deleteById(Long id);
 
     Optional<Engineer> findById(Long id);
 }

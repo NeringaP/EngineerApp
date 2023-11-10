@@ -27,14 +27,20 @@ public class EngineerServiceImpl implements EngineerService {
 
     @Override
     @Transactional
-    public void save(Engineer engineer) {
-        engineerRepository.save(engineer);
+    public Engineer save(Engineer engineer) {
+        return engineerRepository.save(engineer);
     }
 
     @Override
     @Transactional
     public void delete(Engineer engineer) {
         engineerRepository.delete(engineer);
+    }
+
+    @Override
+    public Long deleteById(Long id) {
+        engineerRepository.deleteById(id);
+        return id;
     }
 
     @Override
