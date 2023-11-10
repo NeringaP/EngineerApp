@@ -43,14 +43,18 @@ public class EngineerRestController {
             return engineerService.save(engineer);
         }
 
-        @PutMapping(value = "/engineers", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+        @PutMapping(value = "/engineers", consumes = MediaType.APPLICATION_JSON_VALUE)
         public Engineer updateEngineer(@RequestBody Engineer engineer) {
             return engineerService.save(engineer);
         }
 
         @DeleteMapping("/engineers/{id}")
-        public Long deleteEngineer(@PathVariable("id") Long id)  {
-            return engineerService.deleteById(id);
+        public String deleteEngineer(@PathVariable("id") Long id)  {
+            Engineer engineer = engineerService.findById(id).orElseThrow(() -> new IllegalArgumentException(
+                    "Invalid engineer Id: " + id));
+            if(engineer != null)
+            engineerService.deleteById(id);
+            return "Deleted engineer by id - " + id;
         }
 
     }
