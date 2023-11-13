@@ -3,45 +3,36 @@ package com.finalproject.engineerapp.model;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import javax.persistence.Column;
+import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.MapsId;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 
 @Entity
 @Table(name="authorities")
 public class Authorities {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="id")
-    private Long id;
+    @EmbeddedId
+    private AuthoritiesId id;
 
-    @Column(name="authority")
-    private String authority;
-
-    @OneToOne
-    @JoinColumn(name="user_id")
-    @JsonBackReference
+    @ManyToOne
+    @JoinColumn(name="username")
+    @MapsId("username")
     private User user;
 
-    public Long getId() {
+    public AuthoritiesId getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(AuthoritiesId id) {
         this.id = id;
-    }
-
-    public String getAuthority() {
-        return authority;
-    }
-
-    public void setAuthority(String authority) {
-        this.authority = authority;
     }
 
     public User getUser() {
@@ -51,4 +42,5 @@ public class Authorities {
     public void setUser(User user) {
         this.user = user;
     }
+
 }
