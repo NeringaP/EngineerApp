@@ -6,7 +6,7 @@ import javax.persistence.*;
 import java.util.Set;
 
 @Entity
-@Table(name="creator")
+@Table(name="creators")
 public class Creator {
 
     @Id

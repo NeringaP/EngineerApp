@@ -7,7 +7,7 @@ import java.io.Serializable;
 import java.util.Set;
 
 @Entity
-@Table(name="engineer")
+@Table(name="engineers")
 public class Engineer {
 
     @Id

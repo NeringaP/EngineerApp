@@ -1,15 +1,13 @@
 package com.finalproject.engineerapp.model;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
-@Table(name="user")
+@Table(name="users")
 public class User {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="id")
-    private Long id;
 
+    @Id
     @Column(name="username")
     private String username;
 
@@ -19,25 +17,16 @@ public class User {
     @Column(name="enabled")
     private boolean enabled;
 
-    @OneToOne(mappedBy="user", cascade = CascadeType.ALL)
-    private Authorities authorities;
+    @OneToMany(mappedBy="user", cascade = CascadeType.ALL)
+    private Set<Authorities> authorities;
 
     public User() {
     }
 
-    public User(Long id, String username, String password, boolean enabled) {
-        this.id = id;
+    public User(String username, String password, boolean enabled) {
         this.username = username;
         this.password = password;
         this.enabled = enabled;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public String getUsername() {
@@ -64,11 +53,11 @@ public class User {
         this.enabled = enabled;
     }
 
-    public Authorities getAuthorities() {
+    public Set<Authorities> getAuthorities() {
         return authorities;
     }
 
-    public void setAuthorities(Authorities authorities) {
+    public void setAuthorities(Set<Authorities> authorities) {
         this.authorities = authorities;
     }
 }

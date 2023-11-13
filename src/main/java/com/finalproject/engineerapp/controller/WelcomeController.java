@@ -24,8 +24,8 @@ public class WelcomeController {
         String username = principal.getName();
         User user = userService.findByUsername(username);
         return "welcome, " + user.getUsername() + " ,you are authorized." +
-                " Your posts will be created with your id - " + user.getId() +
-                " you have assigned user role - " + user.getAuthorities().getAuthority();
+                " Your posts will be created with your id - " + user.getUsername() +
+                " you have assigned user role - " + user.getAuthorities();
     }
 
     @GetMapping("/cart")
