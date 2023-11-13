@@ -2,6 +2,7 @@ package com.finalproject.engineerapp.model;
 
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 
@@ -19,7 +20,8 @@ public class House {
 
     @ManyToOne
     @JoinColumn(name = "project_id", nullable = false)
-    @JsonBackReference
+//    @JsonBackReference
+    @JsonIgnore
     private Project project;
 
     public House() {

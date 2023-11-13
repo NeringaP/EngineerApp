@@ -1,6 +1,7 @@
 package com.finalproject.engineerapp.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
@@ -19,17 +20,18 @@ public class Project {
     private String name;
 
     @OneToMany(mappedBy = "project", cascade = CascadeType.ALL)
-    @JsonManagedReference
+//    @JsonManagedReference
+    @JsonIgnore
     private Set<House> houses;
 
     @ManyToOne
     @JoinColumn(name = "engineer_id")
-    @JsonBackReference("engineer-projects")
+//    @JsonBackReference("engineer-projects")
     private Engineer engineer;
 
     @ManyToOne
     @JoinColumn(name = "creator_id")
-    @JsonBackReference
+//    @JsonBackReference
     private Creator creator;
 
     public Project() {

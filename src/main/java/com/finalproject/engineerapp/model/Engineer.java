@@ -1,5 +1,6 @@
 package com.finalproject.engineerapp.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
@@ -25,7 +26,8 @@ public class Engineer {
     private String email;
 
     @OneToMany(mappedBy = "engineer")
-    @JsonManagedReference("engineer-projects")
+//    @JsonManagedReference("engineer-projects")
+    @JsonIgnore
     private Set<Project> projects;
 
     public Engineer() {

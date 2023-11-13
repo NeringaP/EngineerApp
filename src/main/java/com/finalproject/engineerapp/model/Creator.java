@@ -1,5 +1,6 @@
 package com.finalproject.engineerapp.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
@@ -24,7 +25,8 @@ public class Creator {
     private String email;
 
     @OneToMany(mappedBy = "creator")
-    @JsonManagedReference
+//    @JsonManagedReference
+    @JsonIgnore
     private Set<Project> projects;
 
     public Creator() {
