@@ -1,7 +1,6 @@
 package com.finalproject.engineerapp.model;
 
 import javax.persistence.*;
-import java.util.Set;
 
 @Entity
 @Table(name="users")
@@ -17,8 +16,8 @@ public class User {
     @Column(name="enabled")
     private boolean enabled;
 
-    @OneToMany(mappedBy="user", cascade = CascadeType.ALL)
-    private Set<Authorities> authorities;
+    @OneToOne(mappedBy="user", cascade = CascadeType.ALL)
+    private Authority authority;
 
     public User() {
     }
@@ -53,11 +52,11 @@ public class User {
         this.enabled = enabled;
     }
 
-    public Set<Authorities> getAuthorities() {
-        return authorities;
+    public Authority getAuthorities() {
+        return authority;
     }
 
-    public void setAuthorities(Set<Authorities> authorities) {
-        this.authorities = authorities;
+    public void setAuthorities(Authority authority) {
+        this.authority = authority;
     }
 }

@@ -1,6 +1,6 @@
 package com.finalproject.engineerapp.service;
 
-import com.finalproject.engineerapp.model.Authorities;
+import com.finalproject.engineerapp.model.Authority;
 import com.finalproject.engineerapp.repositories.AuthoritiesRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,26 +22,26 @@ public class AuthoritiesServiceImpl implements AuthoritiesService {
     }
 
     @Override
-    public List<Authorities> findAll() {
-        List<Authorities> authorities = authoritiesRepository.findAll();
+    public List<Authority> findAll() {
+        List<Authority> authorities = authoritiesRepository.findAll();
         return authorities;
     }
 
     @Override
     @Transactional
-    public void save(Authorities authorities) {
-        authoritiesRepository.save(authorities);
+    public void save(Authority authority) {
+        authoritiesRepository.save(authority);
     }
 
     @Override
     @Transactional
-    public void delete(Authorities authorities) {
-        authoritiesRepository.delete(authorities);
+    public void delete(Authority authority) {
+        authoritiesRepository.delete(authority);
     }
 
     @Override
-    public Optional<Authorities> findById(Long id) {
-        Optional<Authorities> authorities = authoritiesRepository.findById(id);
+    public Optional<Authority> findById(Long id) {
+        Optional<Authority> authorities = authoritiesRepository.findById(id);
         return authorities;
     }
 }

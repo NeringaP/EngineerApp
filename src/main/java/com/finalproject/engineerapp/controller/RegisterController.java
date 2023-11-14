@@ -1,6 +1,6 @@
 package com.finalproject.engineerapp.controller;
 
-import com.finalproject.engineerapp.model.Authorities;
+import com.finalproject.engineerapp.model.Authority;
 import com.finalproject.engineerapp.model.User;
 import com.finalproject.engineerapp.service.AuthoritiesService;
 import com.finalproject.engineerapp.service.UserService;
@@ -11,9 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 @Controller
 public class RegisterController {
@@ -61,13 +59,13 @@ public class RegisterController {
 //    }
 
     @GetMapping("/teises")
-    public List<Authorities> getAuthorities() {
+    public List<Authority> getAuthorities() {
         return authoritiesService.findAll();
     }
 
     @PostMapping("/addteise")
-    public List<Authorities> addAuthority(@RequestBody Authorities authorities) {
-        authoritiesService.save(authorities);
+    public List<Authority> addAuthority(@RequestBody Authority authority) {
+        authoritiesService.save(authority);
 
         return authoritiesService.findAll();
     }
