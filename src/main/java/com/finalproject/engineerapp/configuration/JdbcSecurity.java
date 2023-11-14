@@ -31,12 +31,13 @@ public class JdbcSecurity extends WebSecurityConfigurerAdapter {
                 .dataSource(dataSource)
                 .passwordEncoder(passwordEncoder())
                 .usersByUsernameQuery(
-                        "SELECT username, password, enabled from user where username = ?")
+                        "SELECT username, password, enabled FROM users WHERE username = ?")
                 .authoritiesByUsernameQuery(
-                        "SELECT u.username, a.authority " +
-                                "FROM authorities a, user u " +
-                                "WHERE u.username = ? " +
-                                "AND u.id = a.user_id"
+//                        "SELECT u.username, a.authority " +
+//                                "FROM authorities a, users u " +
+//                                "WHERE u.username = ? " +
+//                                "AND u.username = a.username"
+                        "SELECT username, authority FROM authorities WHERE username = ?"
                 );
     }
 

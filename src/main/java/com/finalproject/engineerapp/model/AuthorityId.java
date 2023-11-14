@@ -5,7 +5,7 @@ import javax.persistence.Embeddable;
 import java.io.Serializable;
 
 @Embeddable
-public class AuthoritiesId implements Serializable {
+public class AuthorityId implements Serializable {
     @Column(name = "username")
     private String username;
 

@@ -1,16 +1,16 @@
 package com.finalproject.engineerapp.service;
 
-import com.finalproject.engineerapp.model.Authorities;
+import com.finalproject.engineerapp.model.Authority;
 
 import java.util.List;
 import java.util.Optional;
 
 public interface AuthoritiesService {
-    List<Authorities> findAll();
+    List<Authority> findAll();
 
-    void save(Authorities authorities);
+    void save(Authority authority);
 
-    void delete(Authorities authorities);
+    void delete(Authority authority);
 
-    Optional<Authorities> findById(Long id);
+    Optional<Authority> findById(Long id);
 }

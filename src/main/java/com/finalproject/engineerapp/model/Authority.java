@@ -1,37 +1,29 @@
 package com.finalproject.engineerapp.model;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-
-import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.MapsId;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
-import javax.persistence.UniqueConstraint;
 
 @Entity
 @Table(name="authorities")
-public class Authorities {
+public class Authority {
 
     @EmbeddedId
-    private AuthoritiesId id;
+    private AuthorityId id;
 
-    @ManyToOne
+    @OneToOne
     @JoinColumn(name="username")
     @MapsId("username")
     private User user;
 
-    public AuthoritiesId getId() {
+    public AuthorityId getId() {
         return id;
     }
 
-    public void setId(AuthoritiesId id) {
+    public void setId(AuthorityId id) {
         this.id = id;
     }
 
