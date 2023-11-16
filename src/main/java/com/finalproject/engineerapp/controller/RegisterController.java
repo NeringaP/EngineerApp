@@ -30,11 +30,6 @@ public class RegisterController {
         this.authoritiesService = authoritiesService;
     }
 
-    @GetMapping("/")
-    public String index() {
-        return "home";
-    }
-
     @PostMapping("/adduser")
     public User addNewUser(@RequestBody User user) {
         userService.save(user);
