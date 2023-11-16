@@ -3,6 +3,8 @@ package com.finalproject.engineerapp.model;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+
 import java.io.Serializable;
 import java.util.Set;
 
@@ -16,6 +18,7 @@ public class Engineer {
     private Long id;
 
     @Column(name="first_name")
+    @NotNull(message = "Not null!")
     private String firstName;
 
     @Column(name="last_name")

@@ -1,17 +1,22 @@
 package com.finalproject.engineerapp.model;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 public class Person {
 
     private Long id;
-
-    private String firstName;
+    @NotNull(message = "is required")
+    @Size(min=2, message = "must have two or more characters")
+    private String firstName = "";
 
     private String lastName;
 
     private String email;
 
+    public Person() {
+    }
 
     public Person(Long id, String firstName, String lastName, String email) {
         this.id = id;
