@@ -1,5 +1,7 @@
 package com.finalproject.engineerapp.model;
 
+import com.finalproject.engineerapp.validation.PinCode;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -15,14 +17,19 @@ public class Person {
 
     private String email;
 
+    @PinCode(message = "must start with LT- and have 5 digits after")
+    //@PinCode(value = "LT-", message = "must start with LT- and have 5 digits after", size = 8)
+    private String pinCode;
+
     public Person() {
     }
 
-    public Person(Long id, String firstName, String lastName, String email) {
+    public Person(Long id, String firstName, String lastName, String email, String pinCode) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
+        this.pinCode = pinCode;
     }
 
     public Long getId() {
@@ -55,5 +62,13 @@ public class Person {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getPinCode() {
+        return pinCode;
+    }
+
+    public void setPinCode(String pinCode) {
+        this.pinCode = pinCode;
     }
 }

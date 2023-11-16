@@ -11,13 +11,26 @@
 <br> <br>
 <form th:action="@{/processForm}" th:object="${person}" method="POST">
     First name: <input type="text" th:field="*{firstName}"/>
+
+<!--    Add error message (if present) -->
     <span th:if="${#fields.hasErrors('firstName')}"
           th:errors="*{firstName}"
           class="error"></span>
 
+    <br> <br>
+
     Last name: <input type="text" th:field="*{lastName}"/>
 
+    <br> <br>
 
+    PIN code : <input type="text" th:field="*{pinCode}"/>
+
+    <!--    Add error message (if present) -->
+    <span th:if="${#fields.hasErrors('pinCode')}"
+          th:errors="*{pinCode}"
+          class="error"></span>
+
+    <br> <br>
 
     <input type="submit" value="Submit"/>
 
