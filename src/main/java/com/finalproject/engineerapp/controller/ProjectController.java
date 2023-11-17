@@ -78,14 +78,12 @@ public class ProjectController {
         return "projects/list-projects";
     }
 
-    @GetMapping("/delete/{id}")
-    public String delete(@PathVariable("id") Long id, Model model)  {
+    @GetMapping("/delete")
+    public String delete(@RequestParam("projectId") Long id)  {
         Project project = projectService.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid " +
                 "project Id:" + id));
         projectService.delete(project);
-        List<Project> projects = projectService.findAll();
-        model.addAttribute("projects", projects);
-        return "projects/list-projects";
+        return "redirect:/projects/list";
     }
 
 }

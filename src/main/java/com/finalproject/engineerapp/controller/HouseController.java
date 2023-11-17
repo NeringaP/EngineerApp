@@ -69,14 +69,12 @@ public class HouseController {
         return "houses/list-houses";
     }
 
-    @GetMapping("/delete/{id}")
-    public String delete(@PathVariable("id") Long id, Model model)  {
+    @GetMapping("/delete")
+    public String delete(@RequestParam("houseId") Long id)  {
         House house = houseService.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid " +
                 "house Id:" + id));
         houseService.delete(house);
-        List<House> houses = houseService.findAll();
-        model.addAttribute("houses", houses);
-        return "houses/list-houses";
+        return "redirect:/houses/list";
     }
 
 

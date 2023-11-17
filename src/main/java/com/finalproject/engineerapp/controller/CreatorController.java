@@ -64,8 +64,8 @@ public class CreatorController {
         return "creators/list-creators";
     }
 
-    @GetMapping("/delete/{id}")
-    public String delete(@PathVariable("id") Long id, Model model)  {
+    @GetMapping("/delete")
+    public String delete(@RequestParam("creatorId") Long id)  {
         Creator creator = creatorService.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid " +
                 "creator Id:" + id));
         Set<Project> projects = creator.getProjects();
@@ -73,9 +73,6 @@ public class CreatorController {
             project.setCreator(null);
         }
         creatorService.delete(creator);
-        List<Creator> creators = creatorService.findAll();
-
-        model.addAttribute("creators", creators);
-        return "creators/list-creators";
+        return "redirect:/creators/list";
     }
 }

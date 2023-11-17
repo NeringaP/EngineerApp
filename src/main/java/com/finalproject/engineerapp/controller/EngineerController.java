@@ -70,8 +70,8 @@ public class EngineerController {
         return "engineers/list-engineers";
     }
 
-    @GetMapping("/delete/{id}")
-    public String delete(@PathVariable("id") Long id, Model model)  {
+    @GetMapping("/delete")
+    public String delete(@RequestParam("engineerId") Long id)  {
         Engineer engineer = engineerService.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid " +
                 "engineer Id:" + id));
         Set<Project> projects = engineer.getProjects();
@@ -79,10 +79,7 @@ public class EngineerController {
             project.setEngineer(null);
         }
         engineerService.delete(engineer);
-        List<Engineer> engineers = engineerService.findAll();
-
-        model.addAttribute("engineers", engineers);
-        return "engineers/list-engineers";
+        return "redirect:/engineers/list";
     }
 
     @GetMapping("/export/pdf")
