@@ -34,11 +34,11 @@ public class ProjectController {
         this.houseService = houseService;
     }
 
-    @GetMapping
-    public String projects(Model model) {
+    @GetMapping("/list")
+    public String listProjects(Model model) {
         List<Project> projects = projectService.findAll();
         model.addAttribute("projects", projects);
-        return "projects";
+        return "list-projects";
     }
 
     @GetMapping("/create")
@@ -55,7 +55,7 @@ public class ProjectController {
          projectService.save(project);
          List<Project> projects = projectService.findAll();
          model.addAttribute("projects", projects);
-         return "projects";
+         return "list-projects";
     }
 
     @GetMapping("/edit/{id}")
@@ -75,7 +75,7 @@ public class ProjectController {
         projectService.save(project);
         List<Project> projects = projectService.findAll();
         model.addAttribute("projects", projects);
-        return "projects";
+        return "list-projects";
     }
 
     @GetMapping("/delete/{id}")
@@ -85,7 +85,7 @@ public class ProjectController {
         projectService.delete(project);
         List<Project> projects = projectService.findAll();
         model.addAttribute("projects", projects);
-        return "projects";
+        return "list-projects";
     }
 
 }

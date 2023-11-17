@@ -32,7 +32,7 @@
                         Projects
                     </a>
                     <div class="dropdown-menu" aria-labelledby="projectsDropdown">
-                        <a class="dropdown-item" href="/projects">Projects table</a>
+                        <a class="dropdown-item" href="/projects/list">Projects table</a>
                         <div sec:authorize="hasAuthority('CREATOR')" class="dropdown-divider"></div>
                         <a sec:authorize="hasAuthority('CREATOR')" class="dropdown-item" href="/projects/create">Add new project</a>
                     </div>
@@ -42,7 +42,7 @@
                         Houses
                     </a>
                     <div class="dropdown-menu" aria-labelledby="housesDropdown">
-                        <a class="dropdown-item" href="/houses">Houses table</a>
+                        <a class="dropdown-item" href="/houses/list">Houses table</a>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="/houses/create">Add new house</a>
                     </div>
@@ -52,7 +52,7 @@
                     Engineers
                 </a>
                 <div class="dropdown-menu" aria-labelledby="engineersDropdown">
-                    <a class="dropdown-item" href="/engineers">Engineers table</a>
+                    <a class="dropdown-item" href="/engineers/list">Engineers table</a>
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item" href="/engineers/create">Add new engineer</a>
                 </div>
@@ -62,7 +62,7 @@
                         Creators
                     </a>
                     <div class="dropdown-menu" aria-labelledby="creatorsDropdown">
-                        <a class="dropdown-item" href="/creators">Creators table</a>
+                        <a class="dropdown-item" href="/creators/list">Creators table</a>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="/creators/create">Add new creator</a>
                     </div>
@@ -71,10 +71,10 @@
         </div>
         <div sec:authorize="hasAuthority('USER')" class="collapse navbar-collapse" id="navbarNav" >
         <div class="navbar-nav mr-auto">
-                <a class="nav-item nav-link" href="/projects">Projects</a>
-                <a class="nav-item nav-link" href="/houses">Houses</a>
-                <a class="nav-item nav-link" href="/engineers">Engineers</a>
-                <a class="nav-item nav-link" href="/creators">Creators</a>
+                <a class="nav-item nav-link" href="/projects/list">Projects</a>
+                <a class="nav-item nav-link" href="/houses/list">Houses</a>
+                <a class="nav-item nav-link" href="/engineers/list">Engineers</a>
+                <a class="nav-item nav-link" href="/creators/list">Creators</a>
         </div>
         </div>
         <div class="navbar-nav justify-content-end">

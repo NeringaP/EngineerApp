@@ -28,11 +28,11 @@ public class HouseController {
         this.houseService = houseService;
     }
 
-    @GetMapping
-    public String houses(Model model) {
+    @GetMapping("/list")
+    public String listHouses(Model model) {
         List<House> houses = houseService.findAll();
         model.addAttribute("houses", houses);
-        return "houses";
+        return "list-houses";
     }
 
     @GetMapping("/create")
@@ -47,7 +47,7 @@ public class HouseController {
         houseService.save(house);
         List<House> houses = houseService.findAll();
         model.addAttribute("houses", houses);
-        return "houses";
+        return "list-houses";
     }
 
     @GetMapping("/edit/{id}")
@@ -64,7 +64,7 @@ public class HouseController {
         houseService.save(house);
         List<House> houses = houseService.findAll();
         model.addAttribute("houses", houses);
-        return "houses";
+        return "list-houses";
     }
 
     @GetMapping("/delete/{id}")
@@ -74,7 +74,7 @@ public class HouseController {
         houseService.delete(house);
         List<House> houses = houseService.findAll();
         model.addAttribute("houses", houses);
-        return "houses";
+        return "list-houses";
     }
 
 

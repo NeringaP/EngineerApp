@@ -32,11 +32,11 @@ public class EngineerController {
         this.engineerService = engineerService;
     }
 
-    @GetMapping
-    public String engineers(Model model) {
+    @GetMapping("/list")
+    public String listEngineers(Model model) {
         List<Engineer> engineers = engineerService.findAll();
         model.addAttribute("engineers", engineers);
-        return "engineers";
+        return "list-engineers";
     }
 
     @GetMapping("/create")
@@ -49,7 +49,7 @@ public class EngineerController {
         engineerService.save(engineer);
         List<Engineer> engineers = engineerService.findAll();
         model.addAttribute("engineers", engineers);
-        return "engineers";
+        return "list-engineers";
     }
 
     @GetMapping("/edit/{id}")
@@ -65,7 +65,7 @@ public class EngineerController {
         engineerService.save(engineer);
         List<Engineer> engineers = engineerService.findAll();
         model.addAttribute("engineers", engineers);
-        return "engineers";
+        return "list-engineers";
     }
 
     @GetMapping("/delete/{id}")
@@ -80,7 +80,7 @@ public class EngineerController {
         List<Engineer> engineers = engineerService.findAll();
 
         model.addAttribute("engineers", engineers);
-        return "engineers";
+        return "list-engineers";
     }
 
     @GetMapping("/export/pdf")

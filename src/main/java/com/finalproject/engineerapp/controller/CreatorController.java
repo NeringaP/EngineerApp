@@ -25,11 +25,11 @@ public class CreatorController {
         this.creatorService = creatorService;
     }
 
-    @GetMapping
-    public String creators(Model model) {
+    @GetMapping("/list")
+    public String listCreators(Model model) {
         List<Creator> creators = creatorService.findAll();
         model.addAttribute("creators", creators);
-        return "creators";
+        return "list-creators";
     }
 
     @GetMapping("/create")
@@ -42,7 +42,7 @@ public class CreatorController {
         creatorService.save(creator);
         List<Creator> creators = creatorService.findAll();
         model.addAttribute("creators", creators);
-        return "creators";
+        return "list-creators";
     }
 
     @GetMapping("/edit/{id}")
@@ -58,7 +58,7 @@ public class CreatorController {
         creatorService.save(creator);
         List<Creator> creators = creatorService.findAll();
         model.addAttribute("creators", creators);
-        return "creators";
+        return "list-creators";
     }
 
     @GetMapping("/delete/{id}")
@@ -73,6 +73,6 @@ public class CreatorController {
         List<Creator> creators = creatorService.findAll();
 
         model.addAttribute("creators", creators);
-        return "creators";
+        return "list-creators";
     }
 }
