@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -40,11 +41,9 @@ public class CreatorController {
     }
 
     @PostMapping("/save")
-    public String save(Creator creator, Model model) {
+    public String saveCreator(@ModelAttribute("creator") Creator creator) {
         creatorService.save(creator);
-        List<Creator> creators = creatorService.findAll();
-        model.addAttribute("creators", creators);
-        return "creators/list-creators";
+        return "redirect:/creators/list";
     }
 
     @GetMapping("/edit/{id}")

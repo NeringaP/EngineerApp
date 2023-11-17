@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -47,11 +48,9 @@ public class EngineerController {
     }
 
     @PostMapping("/save")
-    public String save(Engineer engineer, Model model) {
+    public String saveEngineer(@ModelAttribute("engineer") Engineer engineer) {
         engineerService.save(engineer);
-        List<Engineer> engineers = engineerService.findAll();
-        model.addAttribute("engineers", engineers);
-        return "engineers/list-engineers";
+        return "redirect:/engineers/list";
     }
 
     @GetMapping("/edit/{id}")

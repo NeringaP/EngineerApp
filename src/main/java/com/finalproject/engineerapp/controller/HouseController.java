@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -45,11 +46,9 @@ public class HouseController {
     }
 
     @PostMapping("/save")
-    public String save(House house, Model model) {
+    public String saveHouse(@ModelAttribute("house") House house) {
         houseService.save(house);
-        List<House> houses = houseService.findAll();
-        model.addAttribute("houses", houses);
-        return "houses/list-houses";
+        return "redirect:/houses/list";
     }
 
     @GetMapping("/edit/{id}")

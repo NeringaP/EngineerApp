@@ -53,11 +53,9 @@ public class ProjectController {
     }
 
     @PostMapping("/save")
-    public String save(Project project, Model model) {
+    public String Project(@ModelAttribute("project") Project project) {
          projectService.save(project);
-         List<Project> projects = projectService.findAll();
-         model.addAttribute("projects", projects);
-         return "projects/list-projects";
+         return "redirect:/projects/list";
     }
 
     @GetMapping("/edit/{id}")
