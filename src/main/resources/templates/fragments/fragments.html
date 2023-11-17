@@ -34,7 +34,7 @@
                     <div class="dropdown-menu" aria-labelledby="projectsDropdown">
                         <a class="dropdown-item" href="/projects/list">Projects table</a>
                         <div sec:authorize="hasAuthority('CREATOR')" class="dropdown-divider"></div>
-                        <a sec:authorize="hasAuthority('CREATOR')" class="dropdown-item" href="/projects/create">Add new project</a>
+                        <a sec:authorize="hasAuthority('CREATOR')" class="dropdown-item" href="/projects/showFormForAdd">Add new project</a>
                     </div>
                 </li>
                 <li class="nav-item dropdown">
@@ -44,7 +44,7 @@
                     <div class="dropdown-menu" aria-labelledby="housesDropdown">
                         <a class="dropdown-item" href="/houses/list">Houses table</a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="/houses/create">Add new house</a>
+                        <a class="dropdown-item" href="/houses/showFormForAdd">Add new house</a>
                     </div>
                 </li>
                 <li class="nav-item dropdown">
@@ -54,7 +54,7 @@
                 <div class="dropdown-menu" aria-labelledby="engineersDropdown">
                     <a class="dropdown-item" href="/engineers/list">Engineers table</a>
                     <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="/engineers/create">Add new engineer</a>
+                    <a class="dropdown-item" href="/engineers/showFormForAdd">Add new engineer</a>
                 </div>
                 </li>
                 <li class="nav-item dropdown">
@@ -64,7 +64,7 @@
                     <div class="dropdown-menu" aria-labelledby="creatorsDropdown">
                         <a class="dropdown-item" href="/creators/list">Creators table</a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="/creators/create">Add new creator</a>
+                        <a class="dropdown-item" href="/creators/showFormForAdd">Add new creator</a>
                     </div>
                 </li>
             </ul>

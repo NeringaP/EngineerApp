@@ -15,7 +15,7 @@
         <h2 class="mb-5">Add new project</h2>
         <div class="row">
             <div class="col-md-6">
-                <form action="#" th:action="@{/projects/add}" th:object="${project}" method="post" class="needs-validation" novalidate>
+                <form action="#" th:action="@{/projects/save}" th:object="${project}" method="POST" class="needs-validation" novalidate>
                     <div class="form-row">
                         <div class="form-group col-md-6">
                             <label for="name" class="col-form-label">Name</label>

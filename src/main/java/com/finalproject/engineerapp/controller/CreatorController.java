@@ -32,13 +32,15 @@ public class CreatorController {
         return "creators/list-creators";
     }
 
-    @GetMapping("/create")
-    public String showCreateNewCreatorForm (Creator creator) {
-        return "creators/creator_add";
+    @GetMapping("/showFormForAdd")
+    public String showFormForAdd(Model model) {
+        Creator creator = new Creator();
+        model.addAttribute("creator", creator);
+        return "creators/creator-form";
     }
 
-    @PostMapping("/add")
-    public String add(Creator creator, Model model) {
+    @PostMapping("/save")
+    public String save(Creator creator, Model model) {
         creatorService.save(creator);
         List<Creator> creators = creatorService.findAll();
         model.addAttribute("creators", creators);

@@ -39,13 +39,15 @@ public class EngineerController {
         return "engineers/list-engineers";
     }
 
-    @GetMapping("/create")
-    public String showCreateNewEngineerForm (Engineer engineer) {
-        return "engineers/engineer_add";
+    @GetMapping("/showFormForAdd")
+    public String showFormForAdd (Model model) {
+        Engineer engineer = new Engineer();
+        model.addAttribute("engineer", engineer);
+        return "engineers/engineer-form";
     }
 
-    @PostMapping("/add")
-    public String add(Engineer engineer, Model model) {
+    @PostMapping("/save")
+    public String save(Engineer engineer, Model model) {
         engineerService.save(engineer);
         List<Engineer> engineers = engineerService.findAll();
         model.addAttribute("engineers", engineers);

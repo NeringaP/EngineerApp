@@ -35,15 +35,17 @@ public class HouseController {
         return "houses/list-houses";
     }
 
-    @GetMapping("/create")
-    public String showCreateNewHouseForm (House house, Model model) {
+    @GetMapping("/showFormForAdd")
+    public String showFormForAdd (Model model) {
+        House house = new House();
+        model.addAttribute("house", house);
         List<Project> projects = projectService.findAll();
         model.addAttribute("projects", projects);
-        return "houses/house_add";
+        return "houses/house-form";
     }
 
-    @PostMapping("/add")
-    public String add(House house, Model model) {
+    @PostMapping("/save")
+    public String save(House house, Model model) {
         houseService.save(house);
         List<House> houses = houseService.findAll();
         model.addAttribute("houses", houses);

@@ -41,17 +41,19 @@ public class ProjectController {
         return "projects/list-projects";
     }
 
-    @GetMapping("/create")
-    public String showCreateNewProjectForm (Project project, Model model) {
+    @GetMapping("/showFormForAdd")
+    public String showFormForAdd (Model model) {
+        Project project = new Project();
+        model.addAttribute("project", project);
         List<Engineer> engineers = engineerService.findAll();
         model.addAttribute("engineers", engineers);
         List<Creator> creators = creatorService.findAll();
         model.addAttribute("creators", creators);
-        return "projects/project_add";
+        return "projects/project-form";
     }
 
-    @PostMapping("/add")
-    public String add(Project project, Model model) {
+    @PostMapping("/save")
+    public String save(Project project, Model model) {
          projectService.save(project);
          List<Project> projects = projectService.findAll();
          model.addAttribute("projects", projects);

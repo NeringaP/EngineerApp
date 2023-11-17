@@ -30,7 +30,7 @@
                 </form>
                 <div sec:authorize="hasAuthority('CREATOR')" class="ml-auto">
                 <p class="my-3">
-                    <a href="/projects/create"  th:href="@{/projects/create}" class="btn btn-info">Add project</a>
+                    <a th:href="@{/projects/showFormForAdd}" class="btn btn-info">Add project</a>
                 </p>
             </div>
             </div>
