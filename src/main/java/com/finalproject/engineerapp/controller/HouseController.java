@@ -32,14 +32,14 @@ public class HouseController {
     public String listHouses(Model model) {
         List<House> houses = houseService.findAll();
         model.addAttribute("houses", houses);
-        return "list-houses";
+        return "houses/list-houses";
     }
 
     @GetMapping("/create")
     public String showCreateNewHouseForm (House house, Model model) {
         List<Project> projects = projectService.findAll();
         model.addAttribute("projects", projects);
-        return "house_add";
+        return "houses/house_add";
     }
 
     @PostMapping("/add")
@@ -47,7 +47,7 @@ public class HouseController {
         houseService.save(house);
         List<House> houses = houseService.findAll();
         model.addAttribute("houses", houses);
-        return "list-houses";
+        return "houses/list-houses";
     }
 
     @GetMapping("/edit/{id}")
@@ -56,7 +56,7 @@ public class HouseController {
         model.addAttribute("house", house);
         List<Project> projects = projectService.findAll();
         model.addAttribute("projects", projects);
-        return "house_edit";
+        return "houses/house_edit";
     }
 
     @PostMapping("/update/{id}")
@@ -64,7 +64,7 @@ public class HouseController {
         houseService.save(house);
         List<House> houses = houseService.findAll();
         model.addAttribute("houses", houses);
-        return "list-houses";
+        return "houses/list-houses";
     }
 
     @GetMapping("/delete/{id}")
@@ -74,7 +74,7 @@ public class HouseController {
         houseService.delete(house);
         List<House> houses = houseService.findAll();
         model.addAttribute("houses", houses);
-        return "list-houses";
+        return "houses/list-houses";
     }
 
 

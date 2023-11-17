@@ -38,7 +38,7 @@ public class ProjectController {
     public String listProjects(Model model) {
         List<Project> projects = projectService.findAll();
         model.addAttribute("projects", projects);
-        return "list-projects";
+        return "projects/list-projects";
     }
 
     @GetMapping("/create")
@@ -47,7 +47,7 @@ public class ProjectController {
         model.addAttribute("engineers", engineers);
         List<Creator> creators = creatorService.findAll();
         model.addAttribute("creators", creators);
-        return "project_add";
+        return "projects/project_add";
     }
 
     @PostMapping("/add")
@@ -55,7 +55,7 @@ public class ProjectController {
          projectService.save(project);
          List<Project> projects = projectService.findAll();
          model.addAttribute("projects", projects);
-         return "list-projects";
+         return "projects/list-projects";
     }
 
     @GetMapping("/edit/{id}")
@@ -67,7 +67,7 @@ public class ProjectController {
         model.addAttribute("engineers", engineers);
         List<Creator> creators = creatorService.findAll();
         model.addAttribute("creators", creators);
-        return "project_edit";
+        return "projects/project_edit";
     }
 
     @PostMapping("/update/{id}")
@@ -75,7 +75,7 @@ public class ProjectController {
         projectService.save(project);
         List<Project> projects = projectService.findAll();
         model.addAttribute("projects", projects);
-        return "list-projects";
+        return "projects/list-projects";
     }
 
     @GetMapping("/delete/{id}")
@@ -85,7 +85,7 @@ public class ProjectController {
         projectService.delete(project);
         List<Project> projects = projectService.findAll();
         model.addAttribute("projects", projects);
-        return "list-projects";
+        return "projects/list-projects";
     }
 
 }

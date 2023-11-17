@@ -29,12 +29,12 @@ public class CreatorController {
     public String listCreators(Model model) {
         List<Creator> creators = creatorService.findAll();
         model.addAttribute("creators", creators);
-        return "list-creators";
+        return "creators/list-creators";
     }
 
     @GetMapping("/create")
     public String showCreateNewCreatorForm (Creator creator) {
-        return "creator_add";
+        return "creators/creator_add";
     }
 
     @PostMapping("/add")
@@ -42,7 +42,7 @@ public class CreatorController {
         creatorService.save(creator);
         List<Creator> creators = creatorService.findAll();
         model.addAttribute("creators", creators);
-        return "list-creators";
+        return "creators/list-creators";
     }
 
     @GetMapping("/edit/{id}")
@@ -50,7 +50,7 @@ public class CreatorController {
         Creator creator = creatorService.findById(id).orElseThrow(() -> new IllegalArgumentException(
                 "Invalid creator Id:" + id));
         model.addAttribute("creator", creator);
-        return "creator_edit";
+        return "creators/creator_edit";
     }
 
     @PostMapping("/update/{id}")
@@ -58,7 +58,7 @@ public class CreatorController {
         creatorService.save(creator);
         List<Creator> creators = creatorService.findAll();
         model.addAttribute("creators", creators);
-        return "list-creators";
+        return "creators/list-creators";
     }
 
     @GetMapping("/delete/{id}")
@@ -73,6 +73,6 @@ public class CreatorController {
         List<Creator> creators = creatorService.findAll();
 
         model.addAttribute("creators", creators);
-        return "list-creators";
+        return "creators/list-creators";
     }
 }

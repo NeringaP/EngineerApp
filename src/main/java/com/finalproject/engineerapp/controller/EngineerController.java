@@ -36,12 +36,12 @@ public class EngineerController {
     public String listEngineers(Model model) {
         List<Engineer> engineers = engineerService.findAll();
         model.addAttribute("engineers", engineers);
-        return "list-engineers";
+        return "engineers/list-engineers";
     }
 
     @GetMapping("/create")
     public String showCreateNewEngineerForm (Engineer engineer) {
-        return "engineer_add";
+        return "engineers/engineer_add";
     }
 
     @PostMapping("/add")
@@ -49,7 +49,7 @@ public class EngineerController {
         engineerService.save(engineer);
         List<Engineer> engineers = engineerService.findAll();
         model.addAttribute("engineers", engineers);
-        return "list-engineers";
+        return "engineers/list-engineers";
     }
 
     @GetMapping("/edit/{id}")
@@ -57,7 +57,7 @@ public class EngineerController {
         Engineer engineer = engineerService.findById(id).orElseThrow(() -> new IllegalArgumentException(
                 "Invalid engineer Id:" + id));
         model.addAttribute("engineer", engineer);
-        return "engineer_edit";
+        return "engineers/engineer_edit";
     }
 
     @PostMapping("/update/{id}")
@@ -65,7 +65,7 @@ public class EngineerController {
         engineerService.save(engineer);
         List<Engineer> engineers = engineerService.findAll();
         model.addAttribute("engineers", engineers);
-        return "list-engineers";
+        return "engineers/list-engineers";
     }
 
     @GetMapping("/delete/{id}")
@@ -80,7 +80,7 @@ public class EngineerController {
         List<Engineer> engineers = engineerService.findAll();
 
         model.addAttribute("engineers", engineers);
-        return "list-engineers";
+        return "engineers/list-engineers";
     }
 
     @GetMapping("/export/pdf")
