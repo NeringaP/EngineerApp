@@ -50,7 +50,7 @@
                     <td th:text="${creator.lastName}">Last name</td>
                     <td th:text="${creator.email}">Email</td>
                     <td sec:authorize="hasAuthority('CREATOR')">
-                        <a th:href="@{/creators/edit/{id}(id=${creator.id})}" class="btn btn-sm btn-block btn-info">Edit</a>
+                        <a th:href="@{/creators/showFormForEdit(creatorId=${creator.id})}" class="btn btn-sm btn-block btn-info">Edit</a>
                     </td>
                     <td sec:authorize="hasAuthority('CREATOR')">
                         <a th:href="@{/creators/delete/{id}(id=${creator.id})}" class="btn btn-sm btn-block btn-info" data-toggle="modal" data-target="#exampleModalCenter" th:attrappend="data-target=${creator.id}">Delete</a>

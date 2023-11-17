@@ -1,6 +1,7 @@
 package com.finalproject.engineerapp.controller;
 
 import com.finalproject.engineerapp.model.Creator;
+import com.finalproject.engineerapp.model.Engineer;
 import com.finalproject.engineerapp.model.Project;
 import com.finalproject.engineerapp.service.CreatorService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 import java.util.Set;
@@ -46,12 +48,12 @@ public class CreatorController {
         return "redirect:/creators/list";
     }
 
-    @GetMapping("/edit/{id}")
-    public String showEditForm(@PathVariable("id") Long id, Model model) {
+    @GetMapping("/showFormForEdit")
+    public String showFormForEdit(@RequestParam("creatorId") Long id, Model model) {
         Creator creator = creatorService.findById(id).orElseThrow(() -> new IllegalArgumentException(
                 "Invalid creator Id:" + id));
         model.addAttribute("creator", creator);
-        return "creators/creator_edit";
+        return "creators/creator-form";
     }
 
     @PostMapping("/update/{id}")

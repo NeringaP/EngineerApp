@@ -58,8 +58,8 @@ public class ProjectController {
          return "redirect:/projects/list";
     }
 
-    @GetMapping("/edit/{id}")
-    public String showEditForm(@PathVariable("id") Long id, Model model) {
+    @GetMapping("/showFormForEdit")
+    public String showFormForEdit(@RequestParam("projectId") Long id, Model model) {
         Project project = projectService.findById(id).orElseThrow(() -> new IllegalArgumentException(
                 "Invalid project Id:" + id));
         model.addAttribute("project", project);
@@ -67,7 +67,7 @@ public class ProjectController {
         model.addAttribute("engineers", engineers);
         List<Creator> creators = creatorService.findAll();
         model.addAttribute("creators", creators);
-        return "projects/project_edit";
+        return "projects/project-form";
     }
 
     @PostMapping("/update/{id}")

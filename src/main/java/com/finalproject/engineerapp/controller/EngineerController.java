@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
@@ -53,12 +54,12 @@ public class EngineerController {
         return "redirect:/engineers/list";
     }
 
-    @GetMapping("/edit/{id}")
-    public String showEditForm(@PathVariable("id") Long id, Model model) {
+    @GetMapping("/showFormForEdit")
+    public String showFormForEdit(@RequestParam("engineerId") Long id, Model model) {
         Engineer engineer = engineerService.findById(id).orElseThrow(() -> new IllegalArgumentException(
                 "Invalid engineer Id:" + id));
         model.addAttribute("engineer", engineer);
-        return "engineers/engineer_edit";
+        return "engineers/engineer-form";
     }
 
     @PostMapping("/update/{id}")

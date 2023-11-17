@@ -46,7 +46,7 @@
                 <td th:text="${house.name}">House name</td>
                 <td th:text="${house.project.id + '. ' + house.project.name}">Project</td>
                 <td sec:authorize="hasAuthority('CREATOR')">
-                    <a th:href="@{/houses/edit/{id}(id=${house.id})}" class="btn btn-sm btn-block btn-info">Edit</a>
+                    <a th:href="@{/houses/showFormForEdit(houseId=${house.id})}" class="btn btn-sm btn-block btn-info">Edit</a>
                 </td>
                 <td sec:authorize="hasAuthority('CREATOR')">
                     <a th:href="@{/houses/delete/{id}(id=${house.id})}" class="btn btn-sm btn-block btn-info" data-toggle="modal" data-target="#exampleModalCenter" th:attrappend="data-target=${house.id}">Delete</a>

@@ -17,6 +17,7 @@
             <div class="col-md-6">
                 <form action="#" th:action="@{/projects/save}" th:object="${project}" method="POST" class="needs-validation" novalidate>
                     <div class="form-row">
+                        <input type="hidden" th:field="*{id}"/>
                         <div class="form-group col-md-6">
                             <label for="name" class="col-form-label">Name</label>
                             <input type="text" th:field="*{name}" class="form-control" id="name" placeholder="Name" required>

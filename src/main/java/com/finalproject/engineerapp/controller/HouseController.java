@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
@@ -51,13 +52,13 @@ public class HouseController {
         return "redirect:/houses/list";
     }
 
-    @GetMapping("/edit/{id}")
-    public String showEditForm(@PathVariable("id") Long id, Model model) {
+    @GetMapping("/showFormForEdit")
+    public String showFormForEdit(@RequestParam("houseId") Long id, Model model) {
         House house = houseService.findById(id).orElseThrow(() -> new InvalidIdException("Invalid house Id: " + id));
         model.addAttribute("house", house);
         List<Project> projects = projectService.findAll();
         model.addAttribute("projects", projects);
-        return "houses/house_edit";
+        return "houses/house-form";
     }
 
     @PostMapping("/update/{id}")
