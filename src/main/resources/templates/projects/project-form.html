@@ -12,7 +12,7 @@
     </div>
     <br>
     <div class="container my-5">
-        <h2 class="mb-5">Add new project</h2>
+        <h2 class="mb-5">Project form</h2>
         <div class="row">
             <div class="col-md-6">
                 <form action="#" th:action="@{/projects/save}" th:object="${project}" method="POST" class="needs-validation" novalidate>
@@ -53,7 +53,7 @@
                     </div>
                     <div class="row">
                         <div class="col-md-6 mt-5">
-                            <input type="submit" class="btn btn-large btn-info" value="Add project">
+                            <input type="submit" class="btn btn-large btn-info" value="Save">
                             <a th:href="@{/projects/list}" class="btn btn-large btn-info">&larr; Back</a>
                         </div>
                     </div>
