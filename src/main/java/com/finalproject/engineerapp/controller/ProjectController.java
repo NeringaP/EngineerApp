@@ -70,14 +70,6 @@ public class ProjectController {
         return "projects/project-form";
     }
 
-    @PostMapping("/update/{id}")
-    public String update(@PathVariable("id") Long id, Project project, Model model) {
-        projectService.save(project);
-        List<Project> projects = projectService.findAll();
-        model.addAttribute("projects", projects);
-        return "projects/list-projects";
-    }
-
     @GetMapping("/delete")
     public String delete(@RequestParam("projectId") Long id)  {
         Project project = projectService.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid " +

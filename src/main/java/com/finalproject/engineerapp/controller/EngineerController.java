@@ -62,14 +62,6 @@ public class EngineerController {
         return "engineers/engineer-form";
     }
 
-    @PostMapping("/update/{id}")
-    public String update(@PathVariable("id") Long id, Engineer engineer, Model model) {
-        engineerService.save(engineer);
-        List<Engineer> engineers = engineerService.findAll();
-        model.addAttribute("engineers", engineers);
-        return "engineers/list-engineers";
-    }
-
     @GetMapping("/delete")
     public String delete(@RequestParam("engineerId") Long id)  {
         Engineer engineer = engineerService.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid " +

@@ -61,14 +61,6 @@ public class HouseController {
         return "houses/house-form";
     }
 
-    @PostMapping("/update/{id}")
-    public String update(@PathVariable("id") Long id, House house, Model model) {
-        houseService.save(house);
-        List<House> houses = houseService.findAll();
-        model.addAttribute("houses", houses);
-        return "houses/list-houses";
-    }
-
     @GetMapping("/delete")
     public String delete(@RequestParam("houseId") Long id)  {
         House house = houseService.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid " +

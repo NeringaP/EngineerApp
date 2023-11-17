@@ -56,14 +56,6 @@ public class CreatorController {
         return "creators/creator-form";
     }
 
-    @PostMapping("/update/{id}")
-    public String update(@PathVariable("id") Long id, Creator creator, Model model) {
-        creatorService.save(creator);
-        List<Creator> creators = creatorService.findAll();
-        model.addAttribute("creators", creators);
-        return "creators/list-creators";
-    }
-
     @GetMapping("/delete")
     public String delete(@RequestParam("creatorId") Long id)  {
         Creator creator = creatorService.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid " +
