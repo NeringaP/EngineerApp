@@ -68,8 +68,9 @@ public class JdbcSecurity extends WebSecurityConfigurerAdapter {
                         .loginProcessingUrl("/authenticateTheUser")
                         .permitAll());
         http
-                .logout()
-                .logoutSuccessUrl("/home");
+                .logout(logout -> logout
+                        .permitAll()
+                        .logoutSuccessUrl("/home"));
 
     }
 
