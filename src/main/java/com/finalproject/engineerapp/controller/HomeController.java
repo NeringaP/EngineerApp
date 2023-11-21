@@ -13,7 +13,7 @@ import java.util.List;
 public class HomeController {
 
     @GetMapping
-    public String displayHomeView(Model model) {
+    public String displayHomeView() {
         return "home";
     }
 }
