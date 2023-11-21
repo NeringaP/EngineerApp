@@ -42,14 +42,6 @@ public class JdbcSecurity extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.cors().and().csrf().disable();
-        http.formLogin();
-        http.logout()
-        .logoutSuccessUrl("/home");
-
-
-        //http.authorizeRequests()
-        //  .antMatchers("/welcome").hasRole("BOARD");
 
         //konfiguracija matomumams eina cia
         http
@@ -62,14 +54,23 @@ public class JdbcSecurity extends WebSecurityConfigurerAdapter {
                 .antMatchers("/houses", "/projects", "/engineers", "/engineers/export/pdf", "/creators").hasAnyAuthority(
                         "CREATOR", "USER")
                 .antMatchers("/houses/**", "/projects/**", "/engineers/**", "/creators/**", "/users/**").hasAuthority("CREATOR")
-                .and()
-                .authorizeRequests().antMatchers("/h2-console/**").permitAll()
+                .antMatchers("/h2-console/**").permitAll()
                 .and()
                 .headers().frameOptions().disable()
                 .and()
                 .csrf().ignoringAntMatchers("/h2-console/**", "/api/**")
                 .and()
                 .cors().disable();
+
+        http.formLogin(form ->
+                form
+                        .loginPage("/showLoginPage")
+                        .loginProcessingUrl("/authenticateTheUser")
+                        .permitAll());
+        http
+                .logout()
+                .logoutSuccessUrl("/home");
+
     }
 
 }
