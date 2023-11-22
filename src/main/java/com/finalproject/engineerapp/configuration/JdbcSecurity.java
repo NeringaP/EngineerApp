@@ -66,7 +66,9 @@ public class JdbcSecurity extends WebSecurityConfigurerAdapter {
                 form
                         .loginPage("/showLoginPage")
                         .loginProcessingUrl("/authenticateTheUser")
-                        .permitAll());
+                        .permitAll()
+                        .defaultSuccessUrl("/welcome",true)
+        );
         http
                 .logout(logout -> logout
                         .permitAll()

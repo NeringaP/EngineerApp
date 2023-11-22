@@ -14,17 +14,17 @@
     </div>
     <br>
         <!-- Mask & flexbox options-->
-        <div class="mask rgba-black-light align-items-center">
+        <div class="mask rgba-black-light align-items-center mt-5">
             <!-- Content -->
-            <div class="container">
+            <div class="container pt-5">
                 <!--Grid row-->
                 <div class="row">
+                    <div class="col-md-2"></div>
                     <!--Grid column-->
-                    <div class="col-md-12 mb-4 white-text text-center">
-                        <h1 class="h1-reponsive white-text text-uppercase mb-0 pt-md-5 pt-5 wow fadeInDown" data-wow-delay="0.3s"><strong>Welcome to the team!</strong></h1>
+                    <div class="col-md-8 mb-4 text-center background-transparent">
+                        <h1 class="h1-reponsive text-uppercase mb-0 mt-md-5 wow fadeInDown" data-wow-delay="0.3s"><strong>Welcome to the team, <span sec:authentication="principal.username"></span>!</strong></h1>
                         <hr class="hr-light my-4 wow fadeInDown" data-wow-delay="0.4s">
-                        <h5 class="text-uppercase mb-4 white-text wow fadeInDown" data-wow-delay="0.4s"><strong>Welcome to the team!</strong></h5>
-                        <span sec:authentication="principal.username"></span>
+<!--                        <h5 class="text-uppercase mb-4 white-text wow fadeInDown" data-wow-delay="0.4s"><strong>Welcome to the team!</strong></h5>-->
                     </div>
                     <!--Grid column-->
                 </div>

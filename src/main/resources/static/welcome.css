@@ -28,3 +28,6 @@ h5 {
   cursor: pointer;
   font: inherit;
 }
+.background-transparent{
+    background: rgba(255, 255, 255, 0.6);
+}

@@ -9,3 +9,11 @@ body {
   background-repeat: no-repeat;
   background-size: cover;
 }
+
+h1 {
+  letter-spacing: 8px;
+}
+
+h5 {
+  letter-spacing: 3px;
+}
