@@ -1,7 +1,6 @@
 package com.finalproject.engineerapp.controller;
 
 import com.finalproject.engineerapp.model.Authority;
-import com.finalproject.engineerapp.model.User;
 import com.finalproject.engineerapp.service.AuthoritiesService;
 import com.finalproject.engineerapp.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,12 +29,12 @@ public class RegisterController {
         this.authoritiesService = authoritiesService;
     }
 
-    @PostMapping("/adduser")
-    public User addNewUser(@RequestBody User user) {
-        userService.save(user);
-
-        return user;
-    }
+//    @PostMapping("/adduser")
+//    public User addNewUser(@RequestBody User user) {
+//        userService.save(user);
+//
+//        return user;
+//    }
 
 //    @PostMapping("/register")
 //    public User doRegister(@RequestBody User user) {
