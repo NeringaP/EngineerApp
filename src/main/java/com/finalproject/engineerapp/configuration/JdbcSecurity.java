@@ -51,7 +51,7 @@ public class JdbcSecurity extends WebSecurityConfigurerAdapter {
 
 
                 .antMatchers("/home", "/signin", "/register", "/api/**").permitAll()
-                .antMatchers("/houses", "/projects", "/engineers", "/engineers/export/pdf", "/creators", "/welcome").hasAnyAuthority(
+                .antMatchers("/houses/list", "/projects/list", "/engineers/list", "/engineers/export/pdf", "/creators/list", "/welcome").hasAnyAuthority(
                         "CREATOR", "USER")
                 .antMatchers("/houses/**", "/projects/**", "/engineers/**", "/creators/**", "/users/**").hasAuthority("CREATOR")
                 .antMatchers("/h2-console/**").permitAll()
@@ -73,6 +73,9 @@ public class JdbcSecurity extends WebSecurityConfigurerAdapter {
                 .logout(logout -> logout
                         .permitAll()
                         .logoutSuccessUrl("/home"));
+
+        http.exceptionHandling()
+                .accessDeniedPage("/access-denied");
 
     }
 
