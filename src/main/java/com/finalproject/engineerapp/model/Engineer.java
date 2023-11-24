@@ -24,8 +24,9 @@ public class Engineer {
     @Column(name="email")
     private String email;
 
-    @OneToMany(mappedBy = "engineer", cascade = {CascadeType.PERSIST, CascadeType.MERGE,
-                                                CascadeType.DETACH, CascadeType.REFRESH})
+    @OneToMany(mappedBy = "engineer",
+               cascade = {CascadeType.PERSIST, CascadeType.MERGE,
+                          CascadeType.DETACH, CascadeType.REFRESH})
     @JsonManagedReference("engineer-projects")
     private Set<Project> projects;
 

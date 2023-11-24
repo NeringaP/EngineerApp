@@ -2,6 +2,7 @@ package com.finalproject.engineerapp.model;
 
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.MapsId;
@@ -14,7 +15,7 @@ public class Authority {
     @EmbeddedId
     private AuthorityId id;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="username")
     @MapsId("username")
     private User user;
