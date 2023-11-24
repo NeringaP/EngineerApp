@@ -10,7 +10,7 @@ public interface CreatorService {
 
     void save(Creator creator);
 
-    void delete(Creator creator);
+    void delete(Long id);
 
     Optional<Creator> findById(Long id);
 }

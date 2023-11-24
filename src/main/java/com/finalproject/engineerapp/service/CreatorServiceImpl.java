@@ -1,6 +1,7 @@
 package com.finalproject.engineerapp.service;
 
 import com.finalproject.engineerapp.model.Creator;
+import com.finalproject.engineerapp.model.Project;
 import com.finalproject.engineerapp.repositories.CreatorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -8,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 @Service
 public class CreatorServiceImpl implements CreatorService {
@@ -26,14 +28,18 @@ public class CreatorServiceImpl implements CreatorService {
     }
 
     @Override
-    @Transactional
     public void save(Creator creator) {
         creatorRepository.save(creator);
     }
 
     @Override
-    @Transactional
-    public void delete(Creator creator) {
+    public void delete(Long id) {
+        Creator creator = findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid " +
+                "creator Id:" + id));
+        Set<Project> projects = creator.getProjects();
+        for (Project project : projects) {
+            project.setCreator(null);
+        }
         creatorRepository.delete(creator);
     }
 

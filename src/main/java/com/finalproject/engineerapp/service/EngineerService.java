@@ -10,9 +10,7 @@ public interface EngineerService {
 
     Engineer save(Engineer engineer);
 
-    void delete(Engineer engineer);
-
-    Long deleteById(Long id);
+    void delete(Long id);
 
     Optional<Engineer> findById(Long id);
 }

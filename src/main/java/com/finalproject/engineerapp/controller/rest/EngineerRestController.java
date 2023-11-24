@@ -50,10 +50,7 @@ public class EngineerRestController {
 
         @DeleteMapping("/engineers/{id}")
         public String deleteEngineer(@PathVariable("id") Long id)  {
-            Engineer engineer = engineerService.findById(id).orElseThrow(() -> new IllegalArgumentException(
-                    "Invalid engineer Id: " + id));
-            if(engineer != null)
-            engineerService.deleteById(id);
+            engineerService.delete(id);
             return "Deleted engineer by id - " + id;
         }
 

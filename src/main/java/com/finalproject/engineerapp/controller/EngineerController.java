@@ -64,13 +64,7 @@ public class EngineerController {
 
     @GetMapping("/delete")
     public String delete(@RequestParam("engineerId") Long id)  {
-        Engineer engineer = engineerService.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid " +
-                "engineer Id:" + id));
-        Set<Project> projects = engineer.getProjects();
-        for (Project project : projects) {
-            project.setEngineer(null);
-        }
-        engineerService.delete(engineer);
+        engineerService.delete(id);
         return "redirect:/engineers/list";
     }
 

@@ -26,14 +26,14 @@ public class HouseServiceImpl implements HouseService {
     }
 
     @Override
-    @Transactional
     public void save(House house) {
         houseRepository.save(house);
     }
 
     @Override
-    @Transactional
-    public void delete(House house) {
+    public void delete(Long id) {
+        House house = findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid " +
+                "house Id:" + id));
         houseRepository.delete(house);
     }
 

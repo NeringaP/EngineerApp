@@ -63,9 +63,7 @@ public class HouseController {
 
     @GetMapping("/delete")
     public String delete(@RequestParam("houseId") Long id)  {
-        House house = houseService.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid " +
-                "house Id:" + id));
-        houseService.delete(house);
+        houseService.delete(id);
         return "redirect:/houses/list";
     }
 

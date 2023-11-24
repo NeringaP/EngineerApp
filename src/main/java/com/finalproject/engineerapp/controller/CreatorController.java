@@ -58,13 +58,7 @@ public class CreatorController {
 
     @GetMapping("/delete")
     public String delete(@RequestParam("creatorId") Long id)  {
-        Creator creator = creatorService.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid " +
-                "creator Id:" + id));
-        Set<Project> projects = creator.getProjects();
-        for (Project project : projects) {
-            project.setCreator(null);
-        }
-        creatorService.delete(creator);
+        creatorService.delete(id);
         return "redirect:/creators/list";
     }
 }

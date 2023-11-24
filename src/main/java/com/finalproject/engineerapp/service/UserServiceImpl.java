@@ -25,13 +25,11 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    @Transactional
     public void save(User user) {
         userRepository.save(user);
     }
 
     @Override
-    @Transactional
     public void delete(User user) {
         userRepository.delete(user);
     }

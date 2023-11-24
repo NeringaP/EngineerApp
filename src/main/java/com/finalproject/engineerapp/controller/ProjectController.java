@@ -72,9 +72,7 @@ public class ProjectController {
 
     @GetMapping("/delete")
     public String delete(@RequestParam("projectId") Long id)  {
-        Project project = projectService.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid " +
-                "project Id:" + id));
-        projectService.delete(project);
+        projectService.delete(id);
         return "redirect:/projects/list";
     }
 

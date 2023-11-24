@@ -26,14 +26,14 @@ public class ProjectServiceImpl implements ProjectService {
     }
 
     @Override
-    @Transactional
     public void save(Project project) {
         projectRepository.save(project);
     }
 
     @Override
-    @Transactional
-    public void delete(Project project) {
+    public void delete(Long id) {
+        Project project = findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid " +
+                "project Id:" + id));
         projectRepository.delete(project);
     }
 

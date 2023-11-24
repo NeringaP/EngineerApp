@@ -10,7 +10,7 @@ public interface ProjectService {
 
     void save(Project project);
 
-    void delete(Project project);
+    void delete(Long id);
 
     Optional<Project> findById(Long id);
 }

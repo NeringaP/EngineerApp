@@ -28,13 +28,11 @@ public class AuthoritiesServiceImpl implements AuthoritiesService {
     }
 
     @Override
-    @Transactional
     public void save(Authority authority) {
         authoritiesRepository.save(authority);
     }
 
     @Override
-    @Transactional
     public void delete(Authority authority) {
         authoritiesRepository.delete(authority);
     }

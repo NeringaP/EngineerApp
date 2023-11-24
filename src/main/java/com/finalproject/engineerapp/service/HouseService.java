@@ -10,7 +10,7 @@ public interface HouseService {
 
     void save(House house);
 
-    void delete(House house);
+    void delete(Long id);
 
     Optional<House> findById(Long id);
 }
