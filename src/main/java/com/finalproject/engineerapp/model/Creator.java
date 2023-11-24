@@ -23,7 +23,8 @@ public class Creator {
     @Column(name="email")
     private String email;
 
-    @OneToMany(mappedBy = "creator")
+    @OneToMany(mappedBy = "creator", cascade = {CascadeType.PERSIST, CascadeType.MERGE,
+            CascadeType.DETACH, CascadeType.REFRESH})
     @JsonManagedReference
     private Set<Project> projects;
 

@@ -16,7 +16,7 @@ public class User {
     @Column(name="enabled")
     private boolean enabled;
 
-    @OneToOne(mappedBy="user", cascade = CascadeType.ALL)
+    @OneToOne(mappedBy="user")
     private Authority authority;
 
     public User() {

@@ -22,12 +22,14 @@ public class Project {
     @JsonManagedReference
     private Set<House> houses;
 
-    @ManyToOne
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE,
+                        CascadeType.DETACH, CascadeType.REFRESH})
     @JoinColumn(name = "engineer_id")
     @JsonBackReference("engineer-projects")
     private Engineer engineer;
 
-    @ManyToOne
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE,
+                        CascadeType.DETACH, CascadeType.REFRESH})
     @JoinColumn(name = "creator_id")
     @JsonBackReference
     private Creator creator;
