@@ -30,6 +30,15 @@ public class Engineer {
     @JsonManagedReference("engineer-projects")
     private Set<Project> projects;
 
+    //    @ManyToMany(
+//            cascade = {CascadeType.PERSIST, CascadeType.MERGE,
+//                    CascadeType.DETACH, CascadeType.REFRESH})
+//    @JoinTable(name = "project_engineer",
+//               joinColumns = @JoinColumn(name = "engineer_id"),
+//               inverseJoinColumns = @JoinColumn(name = "project_id")
+//    )
+//    private List<Project> projects;
+
     public Engineer() {
     }
 

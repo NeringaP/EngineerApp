@@ -29,6 +29,16 @@ public class Project {
     @JsonBackReference("engineer-projects")
     private Engineer engineer;
 
+//    @ManyToMany(
+//            cascade = {CascadeType.PERSIST, CascadeType.MERGE,
+//                    CascadeType.DETACH, CascadeType.REFRESH})
+//    @JoinTable(name = "project_engineer",
+//               joinColumns = @JoinColumn(name = "project_id"),
+//               inverseJoinColumns = @JoinColumn(name = "engineer_id")
+//    )
+//    private List<Engineer> engineers;
+
+
     @ManyToOne(fetch = FetchType.LAZY,
                cascade = {CascadeType.PERSIST, CascadeType.MERGE,
                           CascadeType.DETACH, CascadeType.REFRESH})
