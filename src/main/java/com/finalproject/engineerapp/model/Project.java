@@ -93,4 +93,14 @@ public class Project {
     public void setCreator(Creator creator) {
         this.creator = creator;
     }
+
+    @Override
+    public String toString() {
+        return "Project{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", engineer=" + engineer +
+                ", creator=" + creator +
+                '}';
+    }
 }

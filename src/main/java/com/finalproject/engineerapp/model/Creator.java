@@ -78,5 +78,13 @@ public class Creator {
         this.projects = projects;
     }
 
-
+    @Override
+    public String toString() {
+        return "Creator{" +
+                "id=" + id +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", email='" + email + '\'' +
+                '}';
+    }
 }

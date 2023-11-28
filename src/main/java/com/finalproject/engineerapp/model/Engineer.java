@@ -88,4 +88,14 @@ public class Engineer {
     public void setProjects(Set<Project> projects) {
         this.projects = projects;
     }
+
+    @Override
+    public String toString() {
+        return "Engineer{" +
+                "id=" + id +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", email='" + email + '\'' +
+                '}';
+    }
 }

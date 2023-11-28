@@ -53,7 +53,7 @@ public class ProjectController {
     }
 
     @PostMapping("/save")
-    public String Project(@ModelAttribute("project") Project project) {
+    public String saveProject(@ModelAttribute("project") Project project) {
          projectService.save(project);
          return "redirect:/projects/list";
     }

@@ -53,4 +53,13 @@ public class House {
     public void setProject(Project project) {
         this.project = project;
     }
+
+    @Override
+    public String toString() {
+        return "House{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", project=" + project +
+                '}';
+    }
 }
