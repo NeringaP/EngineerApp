@@ -28,8 +28,8 @@ public class CreatorServiceImpl implements CreatorService {
     }
 
     @Override
-    public void save(Creator creator) {
-        creatorRepository.save(creator);
+    public Creator save(Creator creator) {
+       return creatorRepository.save(creator);
     }
 
     @Override

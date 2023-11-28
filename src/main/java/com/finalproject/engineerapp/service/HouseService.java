@@ -8,7 +8,7 @@ import java.util.Optional;
 public interface HouseService {
     List<House> findAll();
 
-    void save(House house);
+    House save(House house);
 
     void delete(Long id);
 

@@ -8,7 +8,7 @@ import java.util.Optional;
 public interface CreatorService {
     List<Creator> findAll();
 
-    void save(Creator creator);
+    Creator save(Creator creator);
 
     void delete(Long id);
 

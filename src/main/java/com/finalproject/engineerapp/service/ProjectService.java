@@ -8,7 +8,7 @@ import java.util.Optional;
 public interface ProjectService {
     List<Project> findAll();
 
-    void save(Project project);
+    Project save(Project project);
 
     void delete(Long id);
 
