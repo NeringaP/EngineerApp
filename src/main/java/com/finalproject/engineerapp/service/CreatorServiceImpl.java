@@ -34,8 +34,7 @@ public class CreatorServiceImpl implements CreatorService {
 
     @Override
     public void delete(Long id) {
-        Creator creator = findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid " +
-                "creator Id:" + id));
+        Creator creator = findById(id);
         Set<Project> projects = creator.getProjects();
         for (Project project : projects) {
             project.setCreator(null);
@@ -44,8 +43,9 @@ public class CreatorServiceImpl implements CreatorService {
     }
 
     @Override
-    public Optional<Creator> findById(Long id) {
-        Optional<Creator> creator = creatorRepository.findById(id);
+    public Creator findById(Long id) {
+        Creator creator = creatorRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid " +
+                "creator Id:" + id));
         return creator;
     }
 }

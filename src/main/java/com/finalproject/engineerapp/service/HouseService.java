@@ -12,5 +12,5 @@ public interface HouseService {
 
     void delete(Long id);
 
-    Optional<House> findById(Long id);
+    House findById(Long id);
 }

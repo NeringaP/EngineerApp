@@ -56,8 +56,7 @@ public class EngineerController {
 
     @GetMapping("/showFormForEdit")
     public String showFormForEdit(@RequestParam("engineerId") Long id, Model model) {
-        Engineer engineer = engineerService.findById(id).orElseThrow(() -> new IllegalArgumentException(
-                "Invalid engineer Id:" + id));
+        Engineer engineer = engineerService.findById(id);
         model.addAttribute("engineer", engineer);
         return "engineers/engineer-form";
     }

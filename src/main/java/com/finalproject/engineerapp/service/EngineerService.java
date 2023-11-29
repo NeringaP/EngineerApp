@@ -12,5 +12,5 @@ public interface EngineerService {
 
     void delete(Long id);
 
-    Optional<Engineer> findById(Long id);
+    Engineer findById(Long id);
 }

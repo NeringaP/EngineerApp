@@ -54,7 +54,7 @@ public class HouseController {
 
     @GetMapping("/showFormForEdit")
     public String showFormForEdit(@RequestParam("houseId") Long id, Model model) {
-        House house = houseService.findById(id).orElseThrow(() -> new InvalidIdException("Invalid house Id: " + id));
+        House house = houseService.findById(id);
         model.addAttribute("house", house);
         List<Project> projects = projectService.findAll();
         model.addAttribute("projects", projects);

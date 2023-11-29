@@ -32,14 +32,13 @@ public class ProjectServiceImpl implements ProjectService {
 
     @Override
     public void delete(Long id) {
-        Project project = findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid " +
-                "project Id:" + id));
-        projectRepository.delete(project);
+        projectRepository.delete(findById(id));
     }
 
     @Override
-    public Optional<Project> findById(Long id) {
-        Optional<Project> project = projectRepository.findById(id);
+    public Project findById(Long id) {
+        Project project = projectRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid " +
+                "project Id:" + id));
         return project;
     }
 

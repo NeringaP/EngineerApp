@@ -60,8 +60,7 @@ public class ProjectController {
 
     @GetMapping("/showFormForEdit")
     public String showFormForEdit(@RequestParam("projectId") Long id, Model model) {
-        Project project = projectService.findById(id).orElseThrow(() -> new IllegalArgumentException(
-                "Invalid project Id:" + id));
+        Project project = projectService.findById(id);
         model.addAttribute("project", project);
         List<Engineer> engineers = engineerService.findAll();
         model.addAttribute("engineers", engineers);

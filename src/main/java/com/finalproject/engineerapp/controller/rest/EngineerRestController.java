@@ -32,8 +32,7 @@ public class EngineerRestController {
 
         @GetMapping("/engineers/{id}")
         public Engineer getEngineer(@PathVariable Long id) {
-            Engineer engineer = engineerService.findById(id).orElseThrow(() -> new IllegalArgumentException(
-                    "Invalid engineer Id:" + id));
+            Engineer engineer = engineerService.findById(id);
             return engineer;
         }
 

@@ -2,13 +2,12 @@ package com.finalproject.engineerapp.aspect;
 
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.AfterReturning;
+import org.aspectj.lang.annotation.AfterThrowing;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.reflect.MethodSignature;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
-
-import java.util.List;
 
 @Aspect
 @Component
@@ -34,7 +33,15 @@ public class LogEntityAspect {
         String method = joinPoint.getSignature().toShortString();
         System.out.println("Method: " + method);
         System.out.println("Result: " + result);
+    }
 
-
+    @AfterThrowing(
+            pointcut = "execution(* com.finalproject.engineerapp.service.*.findById(..))",
+            throwing = "ex"
+    )
+    public void afterThrowingInvalidId(JoinPoint joinPoint, Throwable ex) {
+        String method = joinPoint.getSignature().toShortString();
+        System.out.println("Executing @AfterThrowing on method: " + method);
+        System.out.println("Exception: " + ex);
     }
 }

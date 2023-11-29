@@ -34,8 +34,7 @@ public class EngineerServiceImpl implements EngineerService {
 
     @Override
     public void delete(Long id) {
-        Engineer engineer = findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid " +
-                "engineer Id:" + id));
+        Engineer engineer = findById(id);
         Set<Project> projects = engineer.getProjects();
         for (Project project : projects) {
             project.setEngineer(null);
@@ -44,8 +43,9 @@ public class EngineerServiceImpl implements EngineerService {
     }
 
     @Override
-    public Optional<Engineer> findById(Long id) {
-        Optional<Engineer> engineer = engineerRepository.findById(id);
+    public Engineer findById(Long id) {
+        Engineer engineer = engineerRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid " +
+                "engineer Id:" + id));
         return engineer;
     }
 }

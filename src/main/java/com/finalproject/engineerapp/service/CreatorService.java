@@ -12,5 +12,5 @@ public interface CreatorService {
 
     void delete(Long id);
 
-    Optional<Creator> findById(Long id);
+    Creator findById(Long id);
 }

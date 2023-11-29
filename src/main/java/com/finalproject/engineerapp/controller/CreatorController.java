@@ -50,8 +50,7 @@ public class CreatorController {
 
     @GetMapping("/showFormForEdit")
     public String showFormForEdit(@RequestParam("creatorId") Long id, Model model) {
-        Creator creator = creatorService.findById(id).orElseThrow(() -> new IllegalArgumentException(
-                "Invalid creator Id:" + id));
+        Creator creator = creatorService.findById(id);
         model.addAttribute("creator", creator);
         return "creators/creator-form";
     }

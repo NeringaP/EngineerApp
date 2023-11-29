@@ -32,14 +32,13 @@ public class HouseServiceImpl implements HouseService {
 
     @Override
     public void delete(Long id) {
-        House house = findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid " +
-                "house Id:" + id));
-        houseRepository.delete(house);
+        houseRepository.delete(findById(id));
     }
 
     @Override
-    public Optional<House> findById(Long id) {
-        Optional<House> house = houseRepository.findById(id);
+    public House findById(Long id) {
+        House house = houseRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid " +
+                "house Id:" + id));
         return house;
     }
 }
