@@ -1,6 +1,5 @@
 package com.finalproject.engineerapp.controller;
 
-import com.finalproject.engineerapp.exception.InvalidIdException;
 import com.finalproject.engineerapp.model.House;
 import com.finalproject.engineerapp.model.Project;
 import com.finalproject.engineerapp.service.HouseService;
@@ -10,12 +9,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 
 @Controller
 @RequestMapping("/houses")
@@ -53,20 +52,26 @@ public class HouseController {
     }
 
     @GetMapping("/showFormForEdit")
-    public String showFormForEdit(@RequestParam("houseId") Long id, Model model) {
-        House house = null;
+    public String showFormForEdit(@RequestParam("houseId") String id, Model model) {
         try {
-            house = houseService.findById(id);
+            Long houseId = Long.parseLong(id); // Convert the string to Long
+            House house = houseService.findById(houseId);
             model.addAttribute("house", house);
             List<Project> projects = projectService.findAll();
             model.addAttribute("projects", projects);
             return "houses/house-form";
+        } catch (NumberFormatException e) {
+            model.addAttribute("exception", "Invalid house ID format: " + id);
+            return "exception-page";
+        } catch (NoSuchElementException e) {
+            model.addAttribute("exception", "Invalid house ID: " + id);
+            return "exception-page";
         } catch (Exception e) {
             model.addAttribute("exception", e.getMessage());
             return "exception-page";
         }
-
     }
+
 
     @GetMapping("/delete")
     public String delete(@RequestParam("houseId") Long id, Model model)  {
