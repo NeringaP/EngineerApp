@@ -54,17 +54,30 @@ public class HouseController {
 
     @GetMapping("/showFormForEdit")
     public String showFormForEdit(@RequestParam("houseId") Long id, Model model) {
-        House house = houseService.findById(id);
-        model.addAttribute("house", house);
-        List<Project> projects = projectService.findAll();
-        model.addAttribute("projects", projects);
-        return "houses/house-form";
+        House house = null;
+        try {
+            house = houseService.findById(id);
+            model.addAttribute("house", house);
+            List<Project> projects = projectService.findAll();
+            model.addAttribute("projects", projects);
+            return "houses/house-form";
+        } catch (Exception e) {
+            model.addAttribute("exception", e.getMessage());
+            return "exception-page";
+        }
+
     }
 
     @GetMapping("/delete")
-    public String delete(@RequestParam("houseId") Long id)  {
-        houseService.delete(id);
-        return "redirect:/houses/list";
+    public String delete(@RequestParam("houseId") Long id, Model model)  {
+        try {
+            houseService.delete(id);
+            return "redirect:/houses/list";
+        } catch (Exception e) {
+            model.addAttribute("exception", e.getMessage());
+            return "exception-page";
+        }
+
     }
 
 

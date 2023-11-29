@@ -56,7 +56,7 @@ public class LogEntityAspect {
         long duration = end - begin;
         String method = proceedingJoinPoint.getSignature().toShortString();
         System.out.println("Executing @Around on method: " + method);
-        System.out.println("Method " + method + " duration: " + duration + " milliseconds");
+        System.out.println("Method " + method + " duration: " + duration/1000 + " seconds");
         return result;
     }
 }

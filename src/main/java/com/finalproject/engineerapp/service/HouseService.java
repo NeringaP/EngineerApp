@@ -10,7 +10,7 @@ public interface HouseService {
 
     House save(House house);
 
-    void delete(Long id);
+    void delete(Long id) throws Exception;
 
-    House findById(Long id);
+    House findById(Long id) throws Exception;
 }
