@@ -1,4 +1,4 @@
-package com.finalproject.engineerapp.repositories;
+package com.finalproject.engineerapp.repository;
 
 import com.finalproject.engineerapp.model.Engineer;
 import org.springframework.data.repository.CrudRepository;

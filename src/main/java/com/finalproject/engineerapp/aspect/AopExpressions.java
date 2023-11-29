@@ -12,4 +12,15 @@ public class AopExpressions {
 
     @Pointcut("getServiceSaveMethods() || getServiceDeleteMethods()")
     public void getServiceSaveAndDeleteMethods() {}
+
+    @Pointcut("execution(* com.finalproject.engineerapp.repository.*.*(..))")
+    public void forRepositoryPackage() {}
+    @Pointcut("execution(* com.finalproject.engineerapp.service.*.*(..))")
+    public void forServicePackage() {}
+
+    @Pointcut("execution(* com.finalproject.engineerapp.controller.*.*(..))")
+    public void forControllerPackage() {}
+
+    @Pointcut("forRepositoryPackage() || forServicePackage() || forControllerPackage()")
+    public void forAppFlow() {}
 }

@@ -1,13 +1,11 @@
 package com.finalproject.engineerapp.service;
 
 import com.finalproject.engineerapp.model.Project;
-import com.finalproject.engineerapp.repositories.ProjectRepository;
+import com.finalproject.engineerapp.repository.ProjectRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class ProjectServiceImpl implements ProjectService {

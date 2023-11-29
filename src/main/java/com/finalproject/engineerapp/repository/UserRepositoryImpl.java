@@ -1,7 +1,6 @@
-package com.finalproject.engineerapp.repositories;
+package com.finalproject.engineerapp.repository;
 
 import com.finalproject.engineerapp.model.User;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;

@@ -2,13 +2,11 @@ package com.finalproject.engineerapp.service;
 
 import com.finalproject.engineerapp.model.Creator;
 import com.finalproject.engineerapp.model.Project;
-import com.finalproject.engineerapp.repositories.CreatorRepository;
+import com.finalproject.engineerapp.repository.CreatorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.Set;
 
 @Service
